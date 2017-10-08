@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
+	<table> 
 		<tr><td>請選擇縣市</td>
 			<td><select>
 				<option value="TPE">台北市</option>
