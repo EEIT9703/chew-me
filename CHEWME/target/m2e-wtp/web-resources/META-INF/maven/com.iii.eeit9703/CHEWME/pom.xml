@@ -48,6 +48,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.0</version>
             </plugin>
+<<<<<<< HEAD
 	
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -63,3 +64,17 @@
 	
 </project>
 
+=======
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme.git
