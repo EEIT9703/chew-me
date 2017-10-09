@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/activityServlet")
-public class activityServlet extends HttpServlet {
+public class ActivityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	@Override
