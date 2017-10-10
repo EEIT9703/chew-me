@@ -2,7 +2,9 @@ package com.iii.eeit9703.activity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -36,7 +38,9 @@ public class ActivityDAO implements ActivityDAO_interface {
 		      "SELECT actID,attractionID,name,county,Day,period,Desc FROM acvitity order by actID";
 	private static final String GET_ONE_STMT =
 		      "SELECT actID,attractionID,name,county,Day,period,Desc FROM acvitity where actID = ?";
+
 	
+	//新增
 	@Override
 	public void insert(ActivityVO activityVO) {
         
@@ -78,29 +82,214 @@ public class ActivityDAO implements ActivityDAO_interface {
 		
 	}
 
+	
+	//修改
 	@Override
 	public void update(ActivityVO activityVO) {
-		// TODO Auto-generated method stub
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_STMT);
+			
+			pstmt.setInt(1, activityVO.getAttactionID());
+			pstmt.setString(2, activityVO.getName());
+			pstmt.setString(3, activityVO.getCounty());
+			pstmt.setDate(4, activityVO.getDay());
+			pstmt.setDate(5, activityVO.getPeriod());
+			pstmt.setString(6, activityVO.getDesc());
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("資料庫更新錯誤" + e.getMessage());
+			
+		}finally{
+			if(pstmt != null){	
+				try {
+					pstmt.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace(System.err);
+				}
+			}
+		}
+		if(con !=null){
+			try {
+				con.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace(System.err);
+			}
+		}
 		
 	}
 
+	
+	//刪除
 	@Override
 	public void delete(Integer actID) {
-		// TODO Auto-generated method stub
 		
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE_STMT);
+			
+			pstmt.setInt(1, actID);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("資料庫刪除錯誤"
+					+ se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
 	}
 
+	
+	//
 	@Override
 	public ActivityVO findByPrimaryKey(Integer actID) {
-		// TODO Auto-generated method stub
-		return null;
+
+		ActivityVO activityVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT);
+			
+			pstmt.setInt(1, actID);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()){
+				
+				activityVO = new ActivityVO();
+				
+				activityVO.setActID(rs.getInt("actID"));
+				activityVO.setName(rs.getNString("Name"));
+				activityVO.setCounty(rs.getString("County"));
+				activityVO.setDay(rs.getDate("Day"));
+				activityVO.setPeriod(rs.getDate("period"));
+				activityVO.setDesc(rs.getString("Desc"));
+				
+				
+			}
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return activityVO;
 	}
 
 	@Override
 	public List<ActivityVO> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<ActivityVO> list = new ArrayList<ActivityVO>();
+		ActivityVO activityVO = null;
+
+		Connection con =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+                activityVO = new ActivityVO();
+				
+				activityVO.setActID(rs.getInt("actID"));
+				activityVO.setName(rs.getNString("Name"));
+				activityVO.setCounty(rs.getString("County"));
+				activityVO.setDay(rs.getDate("Day"));
+				activityVO.setPeriod(rs.getDate("period"));
+				activityVO.setDesc(rs.getString("Desc"));
+				
+				list.add(activityVO);
+				
+			}
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
 	}
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
