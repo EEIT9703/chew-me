@@ -1,6 +1,7 @@
 package com.iii.eeit9703.activity;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,18 +13,13 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class ActivityDAO implements ActivityDAO_interface {
-
+public class ActivityJDBCDAO implements ActivityDAO_interface {
 	
-	private static DataSource ds = null;
-	static{
-		try {
-			Context ctx = new InitialContext(); //初始化
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/TestDB"); //連結資料庫
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=DB01";
+	String userid = "sa";
+	String passwd = "P@ssw0rd";
+
 	//新增
 	private static final String INSERT_STMT =
 			"INSERT INTO activity (attractionID,name,county,Day,period,Desc) VALUES (?,?,?,?,?,?) ";
@@ -48,7 +44,9 @@ public class ActivityDAO implements ActivityDAO_interface {
 		PreparedStatement pstmt =null;
 		
 		try {
-			con = ds.getConnection();
+			
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1, activityVO.getAttactionID());
@@ -60,23 +58,28 @@ public class ActivityDAO implements ActivityDAO_interface {
 			
 			pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			throw new RuntimeException("資料庫新增錯誤" + e.getMessage());
-			
-		}finally{
-			if(pstmt != null){	
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
 				try {
 					pstmt.close();
-				} catch (SQLException e1) {
-					e1.printStackTrace(System.err);
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
 				}
 			}
-		}
-		if(con !=null){
-			try {
-				con.close();
-			} catch (SQLException e1) {
-				e1.printStackTrace(System.err);
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
 			}
 		}
 		
@@ -92,7 +95,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 		
 		try {
 			
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setInt(1, activityVO.getAttactionID());
@@ -104,23 +108,28 @@ public class ActivityDAO implements ActivityDAO_interface {
 			
 			pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			throw new RuntimeException("資料庫更新錯誤" + e.getMessage());
-			
-		}finally{
-			if(pstmt != null){	
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
 				try {
 					pstmt.close();
-				} catch (SQLException e1) {
-					e1.printStackTrace(System.err);
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
 				}
 			}
-		}
-		if(con !=null){
-			try {
-				con.close();
-			} catch (SQLException e1) {
-				e1.printStackTrace(System.err);
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
 			}
 		}
 		
@@ -136,16 +145,22 @@ public class ActivityDAO implements ActivityDAO_interface {
 		
 		try {
 			
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, actID);
 			
 			pstmt.executeUpdate();
 			
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("資料庫刪除錯誤"
+			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
+			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -177,7 +192,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 		
 		try {
 			
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			
 			pstmt.setInt(1, actID);
@@ -198,6 +214,10 @@ public class ActivityDAO implements ActivityDAO_interface {
 				
 			}
 			
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -241,9 +261,11 @@ public class ActivityDAO implements ActivityDAO_interface {
 		
 		try {
 			
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
+
 			
 			while(rs.next()){
 				
@@ -260,6 +282,10 @@ public class ActivityDAO implements ActivityDAO_interface {
 				
 			}
 			
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -288,6 +314,60 @@ public class ActivityDAO implements ActivityDAO_interface {
 			}
 		}
 		return list;
+	}
+
+
+	public static void main(String[] args) {
+
+		ActivityJDBCDAO dao = new ActivityJDBCDAO();
+		
+		//新增
+		ActivityVO actVO1 = new ActivityVO();
+		
+		actVO1.setName("九份");
+		actVO1.setCounty("北部");
+		actVO1.setDay(java.sql.Date.valueOf("2017-10-10"));
+		actVO1.setPeriod(java.sql.Date.valueOf("2017-10-10"));
+		actVO1.setDesc("無");
+		dao.insert(actVO1);
+		
+		//修改
+        ActivityVO actVO2 = new ActivityVO();
+		
+		actVO2.setActID(1);
+		actVO2.setName("八份");
+		actVO2.setCounty("中部");
+		actVO2.setDay(java.sql.Date.valueOf("2017-10-10"));
+		actVO2.setPeriod(java.sql.Date.valueOf("2017-10-10"));
+		actVO2.setDesc("無");
+		dao.insert(actVO2);
+		
+		//刪除
+		dao.delete(1);
+		
+		// 查詢
+		ActivityVO actVO3 = dao.findByPrimaryKey(1);
+		System.out.print(actVO3.getActID() + ",");
+		System.out.print(actVO3.getName() + ",");
+		System.out.print(actVO3.getCounty() + ",");
+		System.out.print(actVO3.getDay() + ",");
+		System.out.print(actVO3.getPeriod() + ",");
+		System.out.print(actVO3.getDesc() + ",");
+		System.out.println("---------------------");
+		
+		// 查詢
+		List<ActivityVO> list = dao.getAll();
+		for (ActivityVO aAct : list) {
+			System.out.print(aAct.getActID() + ",");
+			System.out.print(aAct.getName() + ",");
+			System.out.print(aAct.getCounty() + ",");
+			System.out.print(aAct.getDay() + ",");
+			System.out.print(aAct.getPeriod() + ",");
+			System.out.print(aAct.getDesc() + ",");
+			System.out.println();
+		}
+		
+
 	}
 
 }
