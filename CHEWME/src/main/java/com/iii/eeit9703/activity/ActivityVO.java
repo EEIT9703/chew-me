@@ -15,10 +15,10 @@ public class ActivityVO implements java.io.Serializable {
 	private Date period; //編輯行程的時段
 	private String Desc;  //編輯行程的備註
 	private Integer attactionID; //景點 住宿 商家ID
-	private Integer name;       //地點名稱
-	private Integer county;    //所在地區
+	private String name;       //地點名稱
+	private String county;    //所在地區
 	private Integer collectID;  //收藏表
-	private Integer uniqueld; //活動參與者名單
+	private String uniqueld; //活動參與者名單
 	
 	
 	public Integer getActivity_state() {
@@ -57,10 +57,10 @@ public class ActivityVO implements java.io.Serializable {
 	public void setCollectID(Integer collectID) {
 		this.collectID = collectID;
 	}
-	public Integer getUniqueld() {
+	public String getUniqueld() {
 		return uniqueld;
 	}
-	public void setUniqueld(Integer uniqueld) {
+	public void setUniqueld(String uniqueld) {
 		this.uniqueld = uniqueld;
 	}
 	public Integer getMember_ID() {
@@ -99,16 +99,16 @@ public class ActivityVO implements java.io.Serializable {
 	public void setAttactionID(Integer attactionID) {
 		this.attactionID = attactionID;
 	}
-	public Integer getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(Integer name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getCounty() {
+	public String getCounty() {
 		return county;
 	}
-	public void setCounty(Integer county) {
+	public void setCounty(String county) {
 		this.county = county;
 	}
 

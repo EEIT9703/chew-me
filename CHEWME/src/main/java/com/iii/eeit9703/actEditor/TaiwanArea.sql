@@ -1,9 +1,9 @@
 drop table TaiwanArea;
 create table TaiwanArea (
- areaID            int not null,
- conty				varchar(10),
- city					varchar(10),
- cityID	varchar(5),
+ areaID         int not null,
+ conty			varchar(10),
+ city			varchar(10),
+ cityID			varchar(5),
  constraint TaiwanArea_primary_key primary key (areaID));
 
 insert into TaiwanArea values (100,'中正區','臺北市','TPE');
