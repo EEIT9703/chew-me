@@ -54,7 +54,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setInt(1, activityVO.getAttactionID());
 			pstmt.setString(2, activityVO.getName());
 			pstmt.setString(3, activityVO.getCounty());
-			pstmt.setDate(4, activityVO.getDay());
+			pstmt.setInt(4, activityVO.getDay());
 			pstmt.setDate(5, activityVO.getPeriod());
 			pstmt.setString(6, activityVO.getDesc());
 			
@@ -98,7 +98,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setInt(1, activityVO.getAttactionID());
 			pstmt.setString(2, activityVO.getName());
 			pstmt.setString(3, activityVO.getCounty());
-			pstmt.setDate(4, activityVO.getDay());
+			pstmt.setInt(4, activityVO.getDay());
 			pstmt.setDate(5, activityVO.getPeriod());
 			pstmt.setString(6, activityVO.getDesc());
 			
@@ -191,7 +191,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 				activityVO.setActID(rs.getInt("actID"));
 				activityVO.setName(rs.getNString("Name"));
 				activityVO.setCounty(rs.getString("County"));
-				activityVO.setDay(rs.getDate("Day"));
+				activityVO.setDay(rs.getInt("Day"));
 				activityVO.setPeriod(rs.getDate("period"));
 				activityVO.setDesc(rs.getString("Desc"));
 				
@@ -252,7 +252,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 				activityVO.setActID(rs.getInt("actID"));
 				activityVO.setName(rs.getNString("Name"));
 				activityVO.setCounty(rs.getString("County"));
-				activityVO.setDay(rs.getDate("Day"));
+				activityVO.setDay(rs.getInt("Day"));
 				activityVO.setPeriod(rs.getDate("period"));
 				activityVO.setDesc(rs.getString("Desc"));
 				

@@ -52,7 +52,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			pstmt.setInt(1, activityVO.getAttactionID());
 			pstmt.setString(2, activityVO.getName());
 			pstmt.setString(3, activityVO.getCounty());
-			pstmt.setDate(4, activityVO.getDay());
+			pstmt.setInt(4, activityVO.getDay());
 			pstmt.setDate(5, activityVO.getPeriod());
 			pstmt.setString(6, activityVO.getDesc());
 			
@@ -102,7 +102,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			pstmt.setInt(1, activityVO.getAttactionID());
 			pstmt.setString(2, activityVO.getName());
 			pstmt.setString(3, activityVO.getCounty());
-			pstmt.setDate(4, activityVO.getDay());
+			pstmt.setInt(4, activityVO.getDay());
 			pstmt.setDate(5, activityVO.getPeriod());
 			pstmt.setString(6, activityVO.getDesc());
 			
@@ -207,7 +207,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 				activityVO.setActID(rs.getInt("actID"));
 				activityVO.setName(rs.getNString("Name"));
 				activityVO.setCounty(rs.getString("County"));
-				activityVO.setDay(rs.getDate("Day"));
+				activityVO.setDay(rs.getInt("Day"));
 				activityVO.setPeriod(rs.getDate("period"));
 				activityVO.setDesc(rs.getString("Desc"));
 				
@@ -274,7 +274,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 				activityVO.setActID(rs.getInt("actID"));
 				activityVO.setName(rs.getNString("Name"));
 				activityVO.setCounty(rs.getString("County"));
-				activityVO.setDay(rs.getDate("Day"));
+				activityVO.setDay(rs.getInt("Day"));
 				activityVO.setPeriod(rs.getDate("period"));
 				activityVO.setDesc(rs.getString("Desc"));
 				
@@ -326,7 +326,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		
 		actVO1.setName("九份");
 		actVO1.setCounty("北部");
-		actVO1.setDay(java.sql.Date.valueOf("2017-10-10"));
+		actVO1.setDay(1);
 		actVO1.setPeriod(java.sql.Date.valueOf("2017-10-10"));
 		actVO1.setDesc("無");
 		dao.insert(actVO1);
@@ -337,7 +337,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		actVO2.setActID(1);
 		actVO2.setName("八份");
 		actVO2.setCounty("中部");
-		actVO2.setDay(java.sql.Date.valueOf("2017-10-10"));
+		actVO2.setDay(2);
 		actVO2.setPeriod(java.sql.Date.valueOf("2017-10-10"));
 		actVO2.setDesc("無");
 		dao.insert(actVO2);
