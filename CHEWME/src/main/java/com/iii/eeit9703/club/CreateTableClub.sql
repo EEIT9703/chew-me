@@ -3,23 +3,23 @@ use CMDB;
 Alter TABLE ClubMemberList DROP CONSTRAINT FK_ClubID
 --Alter TABLE Club DROP CONSTRAINT FK_MemID
 go
-DROP Table Club
+DROP Table club
 go
 
-CREATE TABLE Club
-(ClubID int PRIMARY KEY IDENTITY(1,1) NOT NULL,
-ClubNAME varchar NOT NULL,
-ManagerID int ,
-Location  int NOT NULL,
-Brief varchar,
-RefURL varchar,
-Vistors int,
-VistorsInMonth int,
-Addr varchar)
+CREATE TABLE club
+(clubID int PRIMARY KEY IDENTITY(1,1) NOT NULL,
+clubNAME varchar NOT NULL,
+managerID int ,
+location  int NOT NULL,
+brief varchar,
+refURL varchar,
+vistors int,
+vistorsInMonth int,
+addr varchar)
 
 go
 
-Alter TABLE ClubMemberList ADD CONSTRAINT FK_ClubID FOREIGN KEY(ClubID) REFERENCES Club(ClubID)
+Alter TABLE club_Member_list ADD CONSTRAINT FK_clubID FOREIGN KEY(clubID) REFERENCES club(ClubID)
 go
 --Alter TABLE Club ADD CONSTRAINT FK_MemID FOREIGN KEY(ManagerID) REFERENCES ClubMemberList(MemID)
 go
