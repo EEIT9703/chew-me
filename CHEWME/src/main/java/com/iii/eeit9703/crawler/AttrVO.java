@@ -3,15 +3,15 @@ package com.iii.eeit9703.crawler;
 import java.sql.Blob;
 
 public class AttrVO implements java.io.Serializable{
-
-	private Integer attractionID;
-	private String name;
-	private String county;
-	private String type;
-	private String address;
-	private String tel;
-	private String intro;
-	private java.sql.Blob image; 
+    //商家、景點、住宿共用欄位
+	private Integer attractionID;   //商家編號
+	private String name;            //商家名稱
+	private String county;          //所在地區
+	private String type;            //類型
+	private String address;         //地址
+	private String tel;             //電話
+	private String intro;           //商家簡介
+	private java.sql.Blob image;    //相關圖片
 	public Integer getAttractionID() {
 		return attractionID;
 	}
