@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AreaDAO {
 
@@ -13,10 +15,11 @@ public class AreaDAO {
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 	
-	private static final String SELECT = "SELECT conty where cityID = ?";
+	private static final String SELECT = "SELECT * FROM taiwan_areas where countyID = ?";
 	
-	public AreaVO findConty(String cityID){
+	public List<AreaVO> findConty(String countyID){
 		
+		List<AreaVO> list = new ArrayList<AreaVO>();
 		AreaVO areaVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -27,16 +30,16 @@ public class AreaDAO {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(SELECT);
 			
-			pstmt.setString(1, cityID);
+			pstmt.setString(1, countyID);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				areaVO = new AreaVO();
-				areaVO.setAreaID(rs.getInt("areaID"));
+				areaVO.setContyID(rs.getInt("contyID"));
 				areaVO.setConty(rs.getString("conty"));
-				areaVO.setCity(rs.getString("city"));
-				areaVO.setCityID(rs.getString("cityID"));
-				
+				areaVO.setCounty(rs.getString("county"));
+				areaVO.setCountyID(rs.getString("countyID"));
+				list.add(areaVO);
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -59,12 +62,21 @@ public class AreaDAO {
 				catch (SQLException e) {e.printStackTrace();}
 			}
 		}
-		return areaVO;
+		return list;
 	}
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		AreaDAO aDao = new AreaDAO();
+		
+		List<AreaVO> list = aDao.findConty("TPE");
+		for(AreaVO area : list){
+			System.out.print(area.getContyID()+",");
+			System.out.print(area.getConty()+",");
+			System.out.print(area.getCounty()+",");
+			System.out.println(area.getCountyID()+",");
+		}
 
 	}
 

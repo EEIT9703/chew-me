@@ -2,34 +2,39 @@ package com.iii.eeit9703.actEditor;
 
 public class AreaVO implements java.io.Serializable{
 
-	private Integer areaID;		//區域代碼(EX.100)
+	private Integer contyID;		//區域代碼(EX.100)
 	private String conty;		//區鄉鎮(EX.中正區)
-	private String city;		//市(EX.台北市)
-	private String cityID;		//市縮寫(EX.TPE)
-	public Integer getAreaID() {
-		return areaID;
+	private String county;		//市(EX.台北市)
+	private String countyID;		//市縮寫(EX.TPE)
+	
+	public Integer getContyID() {
+		return contyID;
 	}
-	public void setAreaID(Integer areaID) {
-		this.areaID = areaID;
+	public void setContyID(Integer contyID) {
+		this.contyID = contyID;
 	}
+
 	public String getConty() {
 		return conty;
 	}
 	public void setConty(String conty) {
 		this.conty = conty;
 	}
-	public String getCity() {
-		return city;
+
+	public String getCounty() {
+		return county;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setCounty(String county) {
+		this.county = county;
 	}
-	public String getCityID() {
-		return cityID;
+
+	public String getCountyID() {
+		return countyID;
 	}
-	public void setCityID(String cityID) {
-		this.cityID = cityID;
+	public void setCountyID(String countyID) {
+		this.countyID = countyID;
 	}
+	
 	
 
 }
