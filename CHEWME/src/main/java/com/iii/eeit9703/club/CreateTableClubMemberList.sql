@@ -13,4 +13,3 @@ CONSTRAINT [PK_ClassHistory] PRIMARY KEY CLUSTERED
 [memID],
 [clubID]
 ) ON [PRIMARY] 
-)
