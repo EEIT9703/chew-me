@@ -17,6 +17,13 @@ public class ActivityVO implements java.io.Serializable {
 	private Integer attactionID; //景點 住宿 商家ID
 	private String name;       //地點名稱
 	private String county;    //所在地區
+	private String type;     //景點  住宿  商家
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	private Integer collectID;  //收藏表
 	private String uniqueld; //活動參與者名單
 	
