@@ -61,4 +61,3 @@ public class AttrVO implements java.io.Serializable{
 		this.image = image;
 	}
 }
-
