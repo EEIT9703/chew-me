@@ -57,4 +57,4 @@ constraint collections_foreign_key foreign key (collectID)REFERENCES members(col
 ); 
 
 create table messages(
-msgId   int not null,
+msgId   int not null,)
