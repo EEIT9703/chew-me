@@ -11,12 +11,19 @@ public class ActivityVO implements java.io.Serializable {
 	private Integer PerNum;  //參加人數
 	private Integer activity_state; //建立活動目前狀態
 	private Integer sheduleID; //
-	private Date Day;     //編輯行程的天數
-	private Date period; //編輯行程的時段
+	private Integer Day;     //編輯行程的天數
+	private Date period; //編輯行程的開始時間(HH:MM)
 	private String Desc;  //編輯行程的備註
 	private Integer attactionID; //景點 住宿 商家ID
 	private String name;       //地點名稱
 	private String county;    //所在地區
+	private String type;     //景點  住宿  商家
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	private Integer collectID;  //收藏表
 	private String uniqueld; //活動參與者名單
 	
@@ -33,10 +40,10 @@ public class ActivityVO implements java.io.Serializable {
 	public void setSheduleID(Integer sheduleID) {
 		this.sheduleID = sheduleID;
 	}
-	public Date getDay() {
+	public Integer getDay() {
 		return Day;
 	}
-	public void setDay(Date day) {
+	public void setDay(Integer day) {
 		Day = day;
 	}
 	public Date getPeriod() {

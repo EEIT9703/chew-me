@@ -22,10 +22,10 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 
 	//新增
 	private static final String INSERT_STMT =
-			"INSERT INTO activity (attractionID,name,county,Day,period,Desc) VALUES (?,?,?,?,?,?) ";
+			"INSERT INTO activity (Day,period,Desc,attractionID,name,county,type) VALUES (?,?,?,?,?,?) ";
 	//修改
 	private static final String UPDATE_STMT =
-			"UPDATE activity set attractionID=?, name=?, county=? ,Day=?, period=?, Desc=? where actID = ? ";
+			"UPDATE activity set Day=?, period=?, Desc=?, attractionID=?, name=?, county=?  where actID = ? ";
 	//刪除
 	private static final String DELETE_STMT =
 			"DELETE FROM activity actID = ?";
@@ -49,12 +49,13 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
-			pstmt.setInt(1, activityVO.getAttactionID());
-			pstmt.setString(2, activityVO.getName());
-			pstmt.setString(3, activityVO.getCounty());
-			pstmt.setDate(4, activityVO.getDay());
-			pstmt.setDate(5, activityVO.getPeriod());
-			pstmt.setString(6, activityVO.getDesc());
+			pstmt.setInt(1, activityVO.getDay()); //行程天數
+			pstmt.setDate(2, activityVO.getPeriod()); //行程開始時間(HH:MM)
+			pstmt.setString(3, activityVO.getDesc()); //行程備註
+			pstmt.setInt(4, activityVO.getAttactionID()); //景點 住宿 商家ID
+			pstmt.setString(5, activityVO.getName()); //地點名稱
+			pstmt.setString(6, activityVO.getCounty()); //所在區域
+			pstmt.setString(7, activityVO.getType()); //景點 住宿 商家
 			
 			pstmt.executeUpdate();
 			
@@ -99,12 +100,12 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
-			pstmt.setInt(1, activityVO.getAttactionID());
-			pstmt.setString(2, activityVO.getName());
-			pstmt.setString(3, activityVO.getCounty());
-			pstmt.setDate(4, activityVO.getDay());
-			pstmt.setDate(5, activityVO.getPeriod());
-			pstmt.setString(6, activityVO.getDesc());
+			pstmt.setInt(1, activityVO.getDay()); //行程天數
+			pstmt.setDate(2, activityVO.getPeriod()); //行程開始時間(HH:MM)
+			pstmt.setString(3, activityVO.getDesc()); //行程備註
+			pstmt.setInt(4, activityVO.getAttactionID()); //景點 住宿 商家
+			pstmt.setString(5, activityVO.getName()); //地點名稱
+			pstmt.setString(6, activityVO.getCounty()); //所在區域
 			
 			pstmt.executeUpdate();
 			
@@ -204,12 +205,13 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 				
 				activityVO = new ActivityVO();
 				
+				activityVO.setDay(rs.getInt("Day"));
+				activityVO.setPeriod(rs.getDate("period"));
+				activityVO.setDesc(rs.getString("Desc"));
 				activityVO.setActID(rs.getInt("actID"));
 				activityVO.setName(rs.getNString("Name"));
 				activityVO.setCounty(rs.getString("County"));
-				activityVO.setDay(rs.getDate("Day"));
-				activityVO.setPeriod(rs.getDate("period"));
-				activityVO.setDesc(rs.getString("Desc"));
+				
 				
 				
 			}
@@ -271,12 +273,13 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 				
                 activityVO = new ActivityVO();
 				
+                activityVO.setDay(rs.getInt("Day"));
+				activityVO.setPeriod(rs.getDate("period"));
+				activityVO.setDesc(rs.getString("Desc"));
 				activityVO.setActID(rs.getInt("actID"));
 				activityVO.setName(rs.getNString("Name"));
 				activityVO.setCounty(rs.getString("County"));
-				activityVO.setDay(rs.getDate("Day"));
-				activityVO.setPeriod(rs.getDate("period"));
-				activityVO.setDesc(rs.getString("Desc"));
+				
 				
 				list.add(activityVO);
 				
@@ -326,7 +329,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		
 		actVO1.setName("九份");
 		actVO1.setCounty("北部");
-		actVO1.setDay(java.sql.Date.valueOf("2017-10-10"));
+		actVO1.setDay(1);
 		actVO1.setPeriod(java.sql.Date.valueOf("2017-10-10"));
 		actVO1.setDesc("無");
 		dao.insert(actVO1);
@@ -337,7 +340,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		actVO2.setActID(1);
 		actVO2.setName("八份");
 		actVO2.setCounty("中部");
-		actVO2.setDay(java.sql.Date.valueOf("2017-10-10"));
+		actVO2.setDay(2);
 		actVO2.setPeriod(java.sql.Date.valueOf("2017-10-10"));
 		actVO2.setDesc("無");
 		dao.insert(actVO2);

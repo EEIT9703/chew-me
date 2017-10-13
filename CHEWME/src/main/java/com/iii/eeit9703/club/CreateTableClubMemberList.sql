@@ -1,16 +1,15 @@
 use CMDB;
 go
 
-DROP TABLE ClubMemberList;
+DROP TABLE club_member_list;
 go 
 
-CREATE TABLE ClubMemberList
+CREATE TABLE club_member_list
 (
-MemID int NOT NULL,
-ClubID int NOT NULL
+memID int NOT NULL,
+clubID int NOT NULL
 CONSTRAINT [PK_ClassHistory] PRIMARY KEY CLUSTERED 
 (
-[MemID],
-[ClubID]
+[memID],
+[clubID]
 ) ON [PRIMARY] 
-)

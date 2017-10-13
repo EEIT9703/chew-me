@@ -1,7 +1,7 @@
 package com.iii.eeit9703.member;
 
 public class MemVO implements java.io.Serializable{
-	private Integer member_Id;
+	private String member_Id;
 	private String m_name;
 	private String m_nickn;
 	private String m_pwd;
@@ -11,10 +11,10 @@ public class MemVO implements java.io.Serializable{
 	private String m_phone;
 	private String m_intr;
 	private byte[] m_photo;
-	public Integer getMember_Id() {
+	public String getMember_Id() {
 		return member_Id;
 	}
-	public void setMember_Id(Integer member_Id) {
+	public void setMember_Id(String member_Id) {
 		this.member_Id = member_Id;
 	}
 	public String getM_name() {
