@@ -1,6 +1,6 @@
 package com.iii.eeit9703.member;
 
-public class MemVO implements java.io.Serializable{
+public class ClubVO implements java.io.Serializable{
 	private String memberId;
 	private String mname;
 	private String mnickn;

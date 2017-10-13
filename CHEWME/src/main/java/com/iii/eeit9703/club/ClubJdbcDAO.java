@@ -1,23 +1,28 @@
-package com.iii.eeit9703.member;
+package com.iii.eeit9703.club;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
-public class MemJDBCDAO {
+public class ClubJdbcDAO implements ClubJdbcDAOI{
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=EEIT9703test";
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 
-	private static final String INSERT_STMT = "INSERT INTO member (memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr) VALUES(?,?,?,?,?,?,?,?,?)";
-	private static final String GET_ALL_STMT = "SELECT  memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr FROM member order by memberId";
-	private static final String GET_ONE_STMT = "SELECT  memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr FROM member WHERE memberId=?";
-	private static final String DELETE = "DELETE FROM member WHERE memberId=?";
-	private static final String UPDATE = "UPDATE member set mname=?,mnickn=?, mpwd=?, mage=?, mmail=?, maddr=?, mphone=?,mintr=?  WHERE memberId=?";
+	private static final String INSERT_STMT = "INSERT INTO clubs (clubID,clubName,managerId,location,brief,refURL,vistors,vistorsInMonth,addr) VALUES(?,?,?,?,?,?,?,?,?)";
+	private static final String GET_ALL_STMT = "SELECT  clubID,clubName,managerId,location,brief,refURL,vistors,vistorsInMonth,addr FROM clubs order by clubID";
+	private static final String GET_ONE_STMT = "SELECT  clubID,clubName,managerId,location,brief,refURL,vistors,vistorsInMonth,addr FROM clubs WHERE clubID=?";
+	private static final String DELETE = "DELETE FROM clubs WHERE clubID=?";
+	private static final String UPDATE = "UPDATE clubs set clubName=?,managerId=?, location=?, brief=?, refURL=?, vistors=?, vistorsInMonth=?,addr=?  WHERE clubID=?";
 
-	public void insert(ClubVO memVO) {
+	public void insert(ClubVO clubVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -27,16 +32,16 @@ public class MemJDBCDAO {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
-
-			pstmt.setString(1, memVO.getmemberId());
-			pstmt.setString(2, memVO.getmname());
-			pstmt.setString(3, memVO.getmnickn());
-			pstmt.setString(4, memVO.getmpwd());
-			pstmt.setInt(5, memVO.getmage());
-			pstmt.setString(6, memVO.getmmail());
-			pstmt.setString(7, memVO.getmaddr());
-			pstmt.setString(8, memVO.getmphone());
-			pstmt.setString(9, memVO.getmintr());
+			
+			pstmt.setInt(1, clubVO.getClubId());
+			pstmt.setString(2, clubVO.getClubName());
+			pstmt.setInt(3, clubVO.getManagerId());
+			pstmt.setInt(4, clubVO.getLocationId());
+			pstmt.setString(5, clubVO.getBrief());
+			pstmt.setString(6, clubVO.getRefURL());
+			pstmt.setInt(7, clubVO.getVistors());
+			pstmt.setInt(8, clubVO.getVistorsInMonth());
+			pstmt.setString(9, clubVO.getAddr());
 
 			pstmt.executeUpdate();
 
@@ -66,7 +71,7 @@ public class MemJDBCDAO {
 
 	}
 
-	public void update(ClubVO memVO) {
+	public void update(ClubVO clubVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -77,15 +82,15 @@ public class MemJDBCDAO {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, memVO.getmname());
-			pstmt.setString(2, memVO.getmnickn());
-			pstmt.setString(3, memVO.getmpwd());
-			pstmt.setInt(4, memVO.getmage());
-			pstmt.setString(5, memVO.getmmail());
-			pstmt.setString(6, memVO.getmaddr());
-			pstmt.setString(7, memVO.getmphone());
-			pstmt.setString(8, memVO.getmintr());
-			pstmt.setString(9, memVO.getmemberId());
+			pstmt.setString(1, clubVO.getClubName());
+			pstmt.setInt(2, clubVO.getManagerId());
+			pstmt.setInt(3, clubVO.getLocationId());
+			pstmt.setString(4, clubVO.getBrief());
+			pstmt.setString(5, clubVO.getRefURL());
+			pstmt.setInt(6, clubVO.getVistors());
+			pstmt.setInt(7, clubVO.getVistorsInMonth());
+			pstmt.setString(8, clubVO.getAddr());
+			pstmt.setInt(9, clubVO.getClubId());
 
 			pstmt.executeUpdate();
 
@@ -115,7 +120,7 @@ public class MemJDBCDAO {
 
 	}
 
-	public void delete(String memberId) {
+	public void delete(Integer clubId) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -126,7 +131,7 @@ public class MemJDBCDAO {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setString(1, memberId);
+			pstmt.setInt(1, clubId);
 
 			pstmt.executeUpdate();
 
@@ -156,9 +161,9 @@ public class MemJDBCDAO {
 
 	}
 
-	public ClubVO findByPrimaryKey(String memberId) {
+	public ClubVO findByPrimaryKey(String clubId) {
 
-		ClubVO memVO = null;
+		ClubVO clubVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -169,22 +174,22 @@ public class MemJDBCDAO {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setString(1, memberId);
+			pstmt.setString(1, clubId);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
-				memVO = new ClubVO();
-				memVO.setmemberId(rs.getString("memberId"));
-				memVO.setmname(rs.getString("mname"));
-				memVO.setmnickn(rs.getString("mnickn"));
-				memVO.setmpwd(rs.getString("mpwd"));
-				memVO.setmage(rs.getInt("mage"));
-				memVO.setmmail(rs.getString("mmail"));
-				memVO.setmaddr(rs.getString("maddr"));
-				memVO.setmphone(rs.getString("mphone"));
-				memVO.setmintr(rs.getString("mintr"));
+				clubVO = new ClubVO();
+				clubVO.setClubId(rs.getInt("clubID"));
+				clubVO.setClubName(rs.getString("clubName"));
+				clubVO.setManagerId(rs.getInt("managerId"));
+				clubVO.setLocationId(rs.getInt("locationId"));
+				clubVO.setBrief(rs.getString("brief"));
+				clubVO.setRefURL(rs.getString("refURL"));
+				clubVO.setVistors(rs.getInt("vistors"));
+				clubVO.setVistorsInMonth(rs.getInt("vistorsInMonth"));
+				clubVO.setAddr(rs.getString("addr"));
 
 			}
 
@@ -211,13 +216,13 @@ public class MemJDBCDAO {
 				}
 			}
 		}
-		return memVO;
+		return clubVO;
 
 	}
 
 	public List<ClubVO> getAll() {
 		List<ClubVO> list = new ArrayList<ClubVO>();
-		ClubVO memVO = null;
+		ClubVO clubVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -232,17 +237,17 @@ public class MemJDBCDAO {
 
 			while (rs.next()) {
 				// memVO 也稱為 Domain objects
-				memVO = new ClubVO();
-				memVO.setmemberId(rs.getString("memberId"));
-				memVO.setmname(rs.getString("mname"));
-				memVO.setmnickn(rs.getString("mnickn"));
-				memVO.setmpwd(rs.getString("mpwd"));
-				memVO.setmage(rs.getInt("mage"));
-				memVO.setmmail(rs.getString("mmail"));
-				memVO.setmaddr(rs.getString("maddr"));
-				memVO.setmphone(rs.getString("mphone"));
-				memVO.setmintr(rs.getString("mintr"));
-				list.add(memVO); // Store the row in the list
+				clubVO = new ClubVO();
+				clubVO.setClubId(rs.getInt("clubID"));
+				clubVO.setClubName(rs.getString("clubName"));
+				clubVO.setManagerId(rs.getInt("managerId"));
+				clubVO.setLocationId(rs.getInt("locationId"));
+				clubVO.setBrief(rs.getString("brief"));
+				clubVO.setRefURL(rs.getString("refURL"));
+				clubVO.setVistors(rs.getInt("vistors"));
+				clubVO.setVistorsInMonth(rs.getInt("vistorsInMonth"));
+				clubVO.setAddr(rs.getString("addr"));
+				list.add(clubVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
@@ -280,59 +285,60 @@ public class MemJDBCDAO {
 
 	public static void main(String[] args) {
 
-		MemJDBCDAO dao = new MemJDBCDAO();
+		ClubJdbcDAO dao = new ClubJdbcDAO();
 
-		 ClubVO memVO1=new ClubVO();
-		 memVO1.setmemberId("eeit970302");
-		 memVO1.setmname("王立藍");
-		 memVO1.setmnickn("職業哈星");
-		 memVO1.setmpwd("eeit97032017");
-		 memVO1.setmage(38);
-		 memVO1.setmmail("eeit9703@gmail.com");
-		 memVO1.setmaddr("你家");
-		 memVO1.setmphone("0912-345-678");
-		 memVO1.setmintr("我超猛");
-		 dao.insert(memVO1);
+		 ClubVO clubVO1=new ClubVO();
+		 clubVO1.setClubId(Integer.parseInt("eeit970302"));
+		 clubVO1.setClubName("王立藍");
+		 clubVO1.setManagerId(Integer.parseInt("職業哈星"));
+		 clubVO1.setLocationId(Integer.parseInt("eeit97032017"));
+		 clubVO1.setBrief("38");
+		 clubVO1.setRefURL("eeit9703@gmail.com");
+		 clubVO1.setVistors(Integer.parseInt("你家"));
+		 clubVO1.setVistorsInMonth(Integer.parseInt("0912-345-678"));
+		 clubVO1.setAddr("我超猛");
+		 dao.insert(clubVO1);
 
-		 ClubVO memVO2=new ClubVO();
-		 memVO2.setmemberId("eeit970301");
-		 memVO2.setmname("王立綠");
-		 memVO2.setmnickn("業餘哈星");
-		 memVO2.setmpwd("eeit9703022017");
-		 memVO2.setmage(28);
-		 memVO2.setmmail("eeit970302@gmail.com");
-		 memVO2.setmaddr("我家");
-		 memVO2.setmphone("0987-654-321");
-		 memVO2.setmintr("我超爛");
-		 dao.update(memVO2);
+		 ClubVO clubVO2=new ClubVO();
+		 clubVO2.setClubId(Integer.parseInt("eeit970301"));
+		 clubVO2.setClubName("王立綠");
+		 clubVO2.setManagerId(Integer.parseInt("業餘哈星"));
+		 clubVO2.setLocationId(Integer.parseInt("eeit9703022017"));
+		 clubVO2.setBrief("28");
+		 clubVO2.setRefURL("eeit970302@gmail.com");
+		 clubVO2.setVistors(Integer.parseInt("我家"));
+		 clubVO2.setVistorsInMonth(Integer.parseInt("0987-654-321"));
+		 clubVO2.setAddr("我超爛");
+		 dao.update(clubVO2);
 
-		dao.delete("eeit970301");
+		dao.delete(Integer.parseInt("eeit970301"));
 
 		ClubVO memVO3 = dao.findByPrimaryKey("eeit970301");
-		System.out.print(memVO3.getmemberId() + ",");
-		System.out.print(memVO3.getmname() + ",");
-		System.out.print(memVO3.getmnickn() + ",");
-		System.out.print(memVO3.getmpwd() + ",");
-		System.out.print(memVO3.getmage() + ",");
-		System.out.print(memVO3.getmmail() + ",");
-		System.out.print(memVO3.getmaddr() + ",");
-		System.out.print(memVO3.getmphone() + ",");
-		System.out.print(memVO3.getmintr());
+		System.out.print(memVO3.getClubId() + ",");
+		System.out.print(memVO3.getClubName() + ",");
+		System.out.print(memVO3.getManagerId() + ",");
+		System.out.print(memVO3.getLocationId() + ",");
+		System.out.print(memVO3.getBrief() + ",");
+		System.out.print(memVO3.getRefURL() + ",");
+		System.out.print(memVO3.getVistors() + ",");
+		System.out.print(memVO3.getVistorsInMonth() + ",");
+		System.out.print(memVO3.getAddr());
 		System.out.println("---------------------");
 
 		List<ClubVO> list = dao.getAll();
 		for (ClubVO aMem : list) {
-			System.out.print(aMem.getmemberId() + ",");
-			System.out.print(aMem.getmname() + ",");
-			System.out.print(aMem.getmnickn() + ",");
-			System.out.print(aMem.getmpwd()+",");
-			System.out.print(aMem.getmage() + ",");
-			System.out.print(aMem.getmmail() + ",");
-			System.out.print(aMem.getmaddr() + ",");
-			System.out.print(aMem.getmphone() + ",");
-			System.out.print(aMem.getmintr());
+			System.out.print(aMem.getClubId() + ",");
+			System.out.print(aMem.getClubName() + ",");
+			System.out.print(aMem.getManagerId() + ",");
+			System.out.print(aMem.getLocationId()+",");
+			System.out.print(aMem.getBrief() + ",");
+			System.out.print(aMem.getRefURL() + ",");
+			System.out.print(aMem.getVistors() + ",");
+			System.out.print(aMem.getVistorsInMonth() + ",");
+			System.out.print(aMem.getAddr());
 			System.out.println();
 
 		}
 	}
+
 }
