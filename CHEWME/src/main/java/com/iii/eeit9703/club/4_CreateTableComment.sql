@@ -18,5 +18,5 @@ cdate Date)
 
 go
 
-Alter TABLE comment ADD CONSTRAINT FK_commentIssueID FOREIGN KEY(issueID) REFERENCES issue(issueID)
+Alter TABLE comment ADD CONSTRAINT FK_commentIssueID FOREIGN KEY(issueID) REFERENCES issues(issueID)
 go
