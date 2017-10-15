@@ -1,17 +1,17 @@
-use CMDB;
-go
+USE CMDB;
+GO
 
-drop table m_friends_lists;
+DROP TABLE m_friends_lists;
 
-create table m_friends_lists(
+CREATE TABLE m_friends_lists(
 memberId    varchar(30),
 friendId    varchar(30),
 fstatus     varchar(20),
-
-constraint mfriendslists_foreign_key foreign key (memberId)REFERENCES members(memberId) 
 );
+ALTER TABLE m_friends_lists ADD CONSTRAINT mfriendslists_foreign_key FOREIGN KEY (memberId)REFERENCES members(memberId) 
 
-insert into m_friends_lists(memberId,friendId,fstatus) values('eeit970301','eeit970303','¶n§Õ')
-insert into m_friends_lists(memberId,friendId,fstatus) values('eeit970301','eeit970304','¶n§Õ')
-insert into m_friends_lists(memberId,friendId,fstatus) values('eeit970301','eeit970305','´›ΩTª{')
-insert into m_friends_lists(memberId,friendId,fstatus) values('eeit970301','eeit970306','¶n§Õ')
+
+INSERT INTO m_friends_lists(memberId,friendId,fstatus) VALUES('eeit970301','eeit970303','Â•ΩÂèã')
+INSERT INTO m_friends_lists(memberId,friendId,fstatus) VALUES('eeit970301','eeit970304','Â•ΩÂèã')
+INSERT INTO m_friends_lists(memberId,friendId,fstatus) VALUES('eeit970301','eeit970305','ÂæÖÁ¢∫Ë™ç')
+INSERT INTO m_friends_lists(memberId,friendId,fstatus) VALUES('eeit970301','eeit970306','Â•ΩÂèã')
