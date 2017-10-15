@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ActivityVO implements java.io.Serializable {
 	
-	//編輯行程
+	//行程表
 	
 	private Integer actID;       //行程編號(完成編輯)
 	private Integer member_ID;  //會員編號
