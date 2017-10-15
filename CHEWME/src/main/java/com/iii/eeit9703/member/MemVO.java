@@ -1,11 +1,11 @@
 package com.iii.eeit9703.member;
 
-public class ClubVO implements java.io.Serializable{
+public class MemVO implements java.io.Serializable{
 	private String memberId;
 	private String mname;
 	private String mnickn;
 	private String mpwd;
-	private Integer mage;
+	private String mbirthday;
 	private String mmail;
 	private String maddr;
 	private String mphone;
@@ -35,11 +35,11 @@ public class ClubVO implements java.io.Serializable{
 	public void setmpwd(String mpwd) {
 		this.mpwd = mpwd;
 	}
-	public Integer getmage() {
-		return mage;
+	public String getmbirthday() {
+		return mbirthday;
 	}
-	public void setmage(Integer mage) {
-		this.mage = mage;
+	public void setmbirthday(String mbirthday) {
+		this.mbirthday = mbirthday;
 	}
 	public String getmmail() {
 		return mmail;
