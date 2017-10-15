@@ -1,6 +1,7 @@
+use CMDB;
+go
+
 drop table members;
-drop table mfriendslists;
-drop table mcalendar;
 
 create table members(
 memberId    varchar(30),
@@ -31,30 +32,3 @@ insert into members(memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mst
 values('eeit970305','莊曉癸','鬼頭鬼腦','eeit970305',15,'eeit970305@gmail.com','新北市新店區中興路246號','0987-948-947','才不告訴膩雷','黑名單','一般會員')
 insert into members(memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mstatus,mrole) 
 values('eeit970306','廖美芽','小新的媽','eeit970306',32,'eeit970306@gmail.com','高雄市左營區仁愛路42號','0956-565-566','親子旅遊我最行','正常','一般會員')
-
-create table mfriendslists(
-memberId    varchar(30),
-friendId    varchar(30),
-fstatus     varchar(20),
-
-constraint mfriendslists_foreign_key foreign key (memberId)REFERENCES members(memberId) 
-);
-
-insert into mfriendslists(memberId,friendId,fstatus) values('eeit970301','eeit970303','好友')
-insert into mfriendslists(memberId,friendId,fstatus) values('eeit970301','eeit970304','好友')
-insert into mfriendslists(memberId,friendId,fstatus) values('eeit970301','eeit970305','待確認')
-insert into mfriendslists(memberId,friendId,fstatus) values('eeit970301','eeit970306','好友')
-
-
-create table mcalendar(
-calendarId  int not null,
-memberId    varchar(30),
-collectID   varchar(30),
-
-constraint mcalendar_primary_key primary key (calendarId),
-constraint mcalendar_foreign_key foreign key (memberId)REFERENCES members(memberId),
-constraint collections_foreign_key foreign key (collectID)REFERENCES members(collectID),
-); 
-
-create table messages(
-msgId   int not null,)
