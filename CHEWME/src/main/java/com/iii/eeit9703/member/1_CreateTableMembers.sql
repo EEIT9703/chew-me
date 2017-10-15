@@ -8,7 +8,7 @@ memberId    varchar(30),
 mname       varchar(20),
 mnickn      varchar(20),
 mpwd        varchar(20),
-mage        int,
+mbirthday   varchar(50),
 mmail       varchar(50),
 maddr       varchar(max),
 mphone      varchar(15),
@@ -20,15 +20,15 @@ mrole       varchar(20),
 constraint member_primary_key primary key (memberId)
 );
 
-insert into members(memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mstatus,mrole) 
-values('eeit970301','½²®aµØ','µfÁ¦®q¤pÅQ¤ý','eeit970301',24,'eeit970301@gmail.com','¥x¥_¥«¤j¦w°Ï©M¥­ªF¸ô1¸¹','0912-345-678','«z«¢«¢«¢«¢','¥¿±`','¤@¯ë·|­û')
-insert into members(memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mstatus,mrole) 
-values('eeit970302','°¨¥ßÉq','Ä¹°¨»®','eeit970302',35,'eeit970302@gmail.com','°ò¶©¥«¤¤¥¿°Ï©M¥­ªF¸ô5¸¹','0987-645-321','§Ú·RÃM¨®®È¹C','¥¿±`','ªÀ¹ÎºÞ²z­û')
-insert into members(memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mstatus,mrole) 
-values('eeit970303','³¯«Ø§Ó','¨£¤¯¨£´¼','eeit970303',53,'eeit970303@gmail.com','¥x¥_¥«¤¤¥¿°ÏÀ]«e¸ô257¸¹','0966-555-444','§Ú³ßÅwª¦¤s','¥¿±`','¤@¯ë·|­û')
-insert into members(memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mstatus,mrole) 
-values('eeit970304','¶À¤@ªÚ','¤ôªG¯ù¶W¦n³Ü','eeit970304',27,'eeit970304@gmail.com','®ç¶é¥«Âk¤¯°ÏÂk¤¯¸ô7¸¹','0922-777-789','­þ¸Ì¦³¤ôªG¯ù­þ¸Ì¥h','¥¿±`','¤@¯ë·|­û')
-insert into members(memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mstatus,mrole) 
-values('eeit970305','²ø¾å¬Ñ','°­ÀY°­¸£','eeit970305',15,'eeit970305@gmail.com','·s¥_¥«·s©±°Ï¤¤¿³¸ô246¸¹','0987-948-947','¤~¤£§i¶D¿°¹p','¶Â¦W³æ','¤@¯ë·|­û')
-insert into members(memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mstatus,mrole) 
-values('eeit970306','¹ù¬üªÞ','¤p·sªº¶ý','eeit970306',32,'eeit970306@gmail.com','°ª¶¯¥«¥ªÀç°Ï¤¯·R¸ô42¸¹','0956-565-566','¿Ë¤l®È¹C§Ú³Ì¦æ','¥¿±`','¤@¯ë·|­û')
+insert into members(memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mstatus,mrole) 
+values('eeit970301','ï¿½ï¿½ï¿½aï¿½ï¿½','ï¿½fï¿½ï¿½ï¿½qï¿½pï¿½Qï¿½ï¿½','eeit970301','1990-10-11','eeit970301@gmail.com','ï¿½xï¿½_ï¿½ï¿½ï¿½jï¿½wï¿½Ï©Mï¿½ï¿½ï¿½Fï¿½ï¿½1ï¿½ï¿½','0912-345-678','ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½`','ï¿½@ï¿½ï¿½|ï¿½ï¿½')
+insert into members(memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mstatus,mrole) 
+values('eeit970302','ï¿½ï¿½ï¿½ï¿½ï¿½q','Ä¹ï¿½ï¿½ï¿½ï¿½','eeit970302','1973-07-25','eeit970302@gmail.com','ï¿½ò¶©¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï©Mï¿½ï¿½ï¿½Fï¿½ï¿½5ï¿½ï¿½','0987-645-321','ï¿½Ú·Rï¿½Mï¿½ï¿½ï¿½È¹C','ï¿½ï¿½ï¿½`','ï¿½ï¿½ï¿½ÎºÞ²zï¿½ï¿½')
+insert into members(memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mstatus,mrole) 
+values('eeit970303','ï¿½ï¿½ï¿½Ø§ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','eeit970303','1970-01-05','eeit970303@gmail.com','ï¿½xï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½eï¿½ï¿½257ï¿½ï¿½','0966-555-444','ï¿½Ú³ï¿½ï¿½wï¿½ï¿½ï¿½s','ï¿½ï¿½ï¿½`','ï¿½@ï¿½ï¿½|ï¿½ï¿½')
+insert into members(memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mstatus,mrole) 
+values('eeit970304','ï¿½ï¿½ï¿½@ï¿½ï¿½','ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½Wï¿½nï¿½ï¿½','eeit970304','1987-07-08','eeit970304@gmail.com','ï¿½ï¿½é¥«ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½kï¿½ï¿½ï¿½ï¿½7ï¿½ï¿½','0922-777-789','ï¿½ï¿½ï¿½Ì¦ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½Ì¥h','ï¿½ï¿½ï¿½`','ï¿½@ï¿½ï¿½|ï¿½ï¿½')
+insert into members(memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mstatus,mrole) 
+values('eeit970305','ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½','eeit970305','2002-03-26','eeit970305@gmail.com','ï¿½sï¿½_ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ï¤ï¿½ï¿½ï¿½ï¿½ï¿½246ï¿½ï¿½','0987-948-947','ï¿½~ï¿½ï¿½ï¿½iï¿½Dï¿½ï¿½ï¿½p','ï¿½Â¦Wï¿½ï¿½','ï¿½@ï¿½ï¿½|ï¿½ï¿½')
+insert into members(memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mstatus,mrole) 
+values('eeit970306','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½pï¿½sï¿½ï¿½ï¿½ï¿½','eeit970306','1985-05-27','eeit970306@gmail.com','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¤ï¿½ï¿½Rï¿½ï¿½42ï¿½ï¿½','0956-565-566','ï¿½Ë¤lï¿½È¹Cï¿½Ú³Ì¦ï¿½','ï¿½ï¿½ï¿½`','ï¿½@ï¿½ï¿½|ï¿½ï¿½')
