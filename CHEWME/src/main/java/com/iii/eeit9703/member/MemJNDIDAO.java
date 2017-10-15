@@ -1,31 +1,35 @@
 package com.iii.eeit9703.member;
 
-import java.sql.*;
 import java.util.*;
+import java.sql.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-
-
-public class MemJDBCDAO {
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=EEIT9703test";
-	String userid = "sa";
-	String passwd = "P@ssw0rd";
-
+public class MemJNDIDAO implements Mem_interface {
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/CMDB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	private static final String INSERT_STMT = "INSERT INTO member (memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
 	private static final String GET_ALL_STMT = "SELECT  memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM member order by memberId";
 	private static final String GET_ONE_STMT = "SELECT  memberId,mname,mnickn,mpwd,mage,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM member WHERE memberId=?";
 	private static final String DELETE = "DELETE FROM member WHERE memberId=?";
 	private static final String UPDATE = "UPDATE member set mname=?,mnickn=?, mpwd=?, mage=?, mmail=?, maddr=?, mphone=?,mintr=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
 
+	@Override
 	public void insert(MemVO memVO) {
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
 		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, memVO.getmemberId());
@@ -40,9 +44,6 @@ public class MemJDBCDAO {
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -64,17 +65,16 @@ public class MemJDBCDAO {
 			}
 		}
 
+
 	}
 
+	@Override
 	public void update(MemVO memVO) {
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
 		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, memVO.getmname());
@@ -89,9 +89,6 @@ public class MemJDBCDAO {
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -113,26 +110,22 @@ public class MemJDBCDAO {
 			}
 		}
 
+
 	}
 
+	@Override
 	public void delete(String memberId) {
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
 		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(DELETE);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, memberId);
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -154,19 +147,18 @@ public class MemJDBCDAO {
 			}
 		}
 
+
 	}
 
+	@Override
 	public MemVO findByPrimaryKey(String memberId) {
-
 		MemVO memVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, memberId);
@@ -188,9 +180,6 @@ public class MemJDBCDAO {
 
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -212,9 +201,9 @@ public class MemJDBCDAO {
 			}
 		}
 		return memVO;
-
 	}
 
+	@Override
 	public List<MemVO> getAll() {
 		List<MemVO> list = new ArrayList<MemVO>();
 		MemVO memVO = null;
@@ -222,11 +211,9 @@ public class MemJDBCDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -245,14 +232,11 @@ public class MemJDBCDAO {
 				list.add(memVO); // Store the row in the list
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
-		} finally {
+		}finally {
 			if (rs != null) {
 				try {
 					rs.close();
@@ -278,61 +262,4 @@ public class MemJDBCDAO {
 		return list;
 	}
 
-	public static void main(String[] args) {
-
-		MemJDBCDAO dao = new MemJDBCDAO();
-
-		 MemVO memVO1=new MemVO();
-		 memVO1.setmemberId("eeit970302");
-		 memVO1.setmname("王立藍");
-		 memVO1.setmnickn("職業哈星");
-		 memVO1.setmpwd("eeit97032017");
-		 memVO1.setmage(38);
-		 memVO1.setmmail("eeit9703@gmail.com");
-		 memVO1.setmaddr("你家");
-		 memVO1.setmphone("0912-345-678");
-		 memVO1.setmintr("我超猛");
-		 dao.insert(memVO1);
-
-		 MemVO memVO2=new MemVO();
-		 memVO2.setmemberId("eeit970301");
-		 memVO2.setmname("王立綠");
-		 memVO2.setmnickn("業餘哈星");
-		 memVO2.setmpwd("eeit9703022017");
-		 memVO2.setmage(28);
-		 memVO2.setmmail("eeit970302@gmail.com");
-		 memVO2.setmaddr("我家");
-		 memVO2.setmphone("0987-654-321");
-		 memVO2.setmintr("我超爛");
-		 dao.update(memVO2);
-
-		dao.delete("eeit970301");
-
-		MemVO memVO3 = dao.findByPrimaryKey("eeit970301");
-		System.out.print(memVO3.getmemberId() + ",");
-		System.out.print(memVO3.getmname() + ",");
-		System.out.print(memVO3.getmnickn() + ",");
-		System.out.print(memVO3.getmpwd() + ",");
-		System.out.print(memVO3.getmage() + ",");
-		System.out.print(memVO3.getmmail() + ",");
-		System.out.print(memVO3.getmaddr() + ",");
-		System.out.print(memVO3.getmphone() + ",");
-		System.out.print(memVO3.getmintr());
-		System.out.println("---------------------");
-
-		List<MemVO> list = dao.getAll();
-		for (MemVO aMem : list) {
-			System.out.print(aMem.getmemberId() + ",");
-			System.out.print(aMem.getmname() + ",");
-			System.out.print(aMem.getmnickn() + ",");
-			System.out.print(aMem.getmpwd()+",");
-			System.out.print(aMem.getmage() + ",");
-			System.out.print(aMem.getmmail() + ",");
-			System.out.print(aMem.getmaddr() + ",");
-			System.out.print(aMem.getmphone() + ",");
-			System.out.print(aMem.getmintr());
-			System.out.println();
-
-		}
-	}
 }
