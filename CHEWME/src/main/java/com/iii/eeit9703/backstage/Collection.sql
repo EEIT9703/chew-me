@@ -14,7 +14,7 @@ memID int NOT NULL,
 actID int NOT NULL,
 [status] int
 
-CONSTRAINT [PK_ClassHistory] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_collect] PRIMARY KEY CLUSTERED 
 (
 [memID],
 [actID]

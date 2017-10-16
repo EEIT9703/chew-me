@@ -1,5 +1,4 @@
 --刪除行程表格
-drop table activity
 
 --建立編輯行程表格
 

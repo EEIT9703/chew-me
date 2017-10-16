@@ -13,7 +13,7 @@ CREATE TABLE club_activity_list
 (
 actId int NOT NULL,
 clubId int NOT NULL
-CONSTRAINT [PK_ClassHistory] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_club_activity_list] PRIMARY KEY CLUSTERED 
 (
 [actId],
 [clubId]
@@ -25,6 +25,6 @@ IF EXISTS (SELECT name FROM sysobjects
             WHERE type='u' AND name = 'clubs')      
 BEGIN
 
-Alter TABLE club_activity_list ADD CONSTRAINT FK_clubID FOREIGN KEY(clubID) REFERENCES clubs(clubID)
+Alter TABLE club_activity_list ADD CONSTRAINT FK_CA_clubID FOREIGN KEY(clubID) REFERENCES clubs(clubID)
 END
 go

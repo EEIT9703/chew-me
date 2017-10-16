@@ -14,7 +14,7 @@ memID int NOT NULL,
 actID int NOT NULL,
 reportContext varchar,
 reportTime datetime
-CONSTRAINT [PK_ClassHistory] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_report] PRIMARY KEY CLUSTERED 
 (
 [memID],
 [actID]
