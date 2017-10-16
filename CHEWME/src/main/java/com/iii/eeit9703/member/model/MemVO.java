@@ -1,4 +1,4 @@
-package com.iii.eeit9703.member;
+package com.iii.eeit9703.member.model;
 
 public class MemVO implements java.io.Serializable{
 	private String memberId;
