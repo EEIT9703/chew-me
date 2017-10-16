@@ -7,7 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class MemJNDIDAO implements Mem_interface {
+public class MemDAO implements Mem_interface {
 	private static DataSource ds = null;
 	static {//系統load進來時就做一次,且只做一次,除非系統關閉,否則一直存在
 		try {
@@ -263,3 +263,4 @@ public class MemJNDIDAO implements Mem_interface {
 	}
 
 }
+
