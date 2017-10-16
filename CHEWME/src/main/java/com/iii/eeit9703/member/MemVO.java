@@ -1,75 +1,75 @@
 package com.iii.eeit9703.member;
 
 public class MemVO implements java.io.Serializable{
-	private String member_Id;
-	private String m_name;
-	private String m_nickn;
-	private String m_pwd;
-	private Integer m_age;
-	private String m_mail;
-	private String m_addr;
-	private String m_phone;
-	private String m_intr;
-	private byte[] m_photo;
-	public String getMember_Id() {
-		return member_Id;
+	private String memberId;
+	private String mname;
+	private String mnickn;
+	private String mpwd;
+	private String mbirthday;
+	private String mmail;
+	private String maddr;
+	private String mphone;
+	private String mintr;
+	private byte[] mphoto;
+	public String getmemberId() {
+		return memberId;
 	}
-	public void setMember_Id(String member_Id) {
-		this.member_Id = member_Id;
+	public void setmemberId(String memberId) {
+		this.memberId = memberId;
 	}
-	public String getM_name() {
-		return m_name;
+	public String getmname() {
+		return mname;
 	}
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public void setmname(String mname) {
+		this.mname = mname;
 	}
-	public String getM_nickn() {
-		return m_nickn;
+	public String getmnickn() {
+		return mnickn;
 	}
-	public void setM_nickn(String m_nickn) {
-		this.m_nickn = m_nickn;
+	public void setmnickn(String mnickn) {
+		this.mnickn = mnickn;
 	}
-	public String getM_pwd() {
-		return m_pwd;
+	public String getmpwd() {
+		return mpwd;
 	}
-	public void setM_pwd(String m_pwd) {
-		this.m_pwd = m_pwd;
+	public void setmpwd(String mpwd) {
+		this.mpwd = mpwd;
 	}
-	public Integer getM_age() {
-		return m_age;
+	public String getmbirthday() {
+		return mbirthday;
 	}
-	public void setM_age(Integer m_age) {
-		this.m_age = m_age;
+	public void setmbirthday(String mbirthday) {
+		this.mbirthday = mbirthday;
 	}
-	public String getM_mail() {
-		return m_mail;
+	public String getmmail() {
+		return mmail;
 	}
-	public void setM_mail(String m_mail) {
-		this.m_mail = m_mail;
+	public void setmmail(String mmail) {
+		this.mmail = mmail;
 	}
-	public String getM_addr() {
-		return m_addr;
+	public String getmaddr() {
+		return maddr;
 	}
-	public void setM_addr(String m_addr) {
-		this.m_addr = m_addr;
+	public void setmaddr(String maddr) {
+		this.maddr = maddr;
 	}
-	public String getM_phone() {
-		return m_phone;
+	public String getmphone() {
+		return mphone;
 	}
-	public void setM_phone(String m_phone) {
-		this.m_phone = m_phone;
+	public void setmphone(String mphone) {
+		this.mphone = mphone;
 	}
-	public String getM_intr() {
-		return m_intr;
+	public String getmintr() {
+		return mintr;
 	}
-	public void setM_intr(String m_intr) {
-		this.m_intr = m_intr;
+	public void setmintr(String mintr) {
+		this.mintr = mintr;
 	}
-	public byte[] getM_photo() {
-		return m_photo;
+	public byte[] getmphoto() {
+		return mphoto;
 	}
-	public void setM_photo(byte[] m_photo) {
-		this.m_photo = m_photo;
+	public void setmphoto(byte[] mphoto) {
+		this.mphoto = mphoto;
 	}
 
 
