@@ -1,4 +1,4 @@
-package com.iii.eeit9703.member;
+package com.iii.eeit9703.member.model;
 
 import java.util.*;
 import java.sql.*;
@@ -7,9 +7,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class MemJNDIDAO implements Mem_interface {
+public class MemDAO implements Mem_interface {
 	private static DataSource ds = null;
-	static {
+	static {//系統load進來時就做一次,且只做一次,除非系統關閉,否則一直存在
 		try {
 			Context ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/CMDB");
@@ -17,11 +17,11 @@ public class MemJNDIDAO implements Mem_interface {
 			e.printStackTrace();
 		}
 	}
-	private static final String INSERT_STMT = "INSERT INTO member (memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
-	private static final String GET_ALL_STMT = "SELECT  memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM member order by memberId";
-	private static final String GET_ONE_STMT = "SELECT  memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM member WHERE memberId=?";
-	private static final String DELETE = "DELETE FROM member WHERE memberId=?";
-	private static final String UPDATE = "UPDATE member set mname=?,mnickn=?, mpwd=?, mbirthday=?, mmail=?, maddr=?, mphone=?,mintr=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
+	private static final String INSERT_STMT = "INSERT INTO members (memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
+	private static final String GET_ALL_STMT = "SELECT  memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM members order by memberId";
+	private static final String GET_ONE_STMT = "SELECT  memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM members WHERE memberId=?";
+	private static final String DELETE = "DELETE FROM members WHERE memberId=?";
+	private static final String UPDATE = "UPDATE members set mname=?,mnickn=?, mpwd=?, mbirthday=?, mmail=?, maddr=?, mphone=?,mintr=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
 
 	@Override
 	public void insert(MemVO memVO) {
@@ -36,7 +36,7 @@ public class MemJNDIDAO implements Mem_interface {
 			pstmt.setString(2, memVO.getmname());
 			pstmt.setString(3, memVO.getmnickn());
 			pstmt.setString(4, memVO.getmpwd());
-			pstmt.setString(5, memVO.getmbirthday());
+			pstmt.setDate(5, memVO.getmbirthday());
 			pstmt.setString(6, memVO.getmmail());
 			pstmt.setString(7, memVO.getmaddr());
 			pstmt.setString(8, memVO.getmphone());
@@ -80,7 +80,7 @@ public class MemJNDIDAO implements Mem_interface {
 			pstmt.setString(1, memVO.getmname());
 			pstmt.setString(2, memVO.getmnickn());
 			pstmt.setString(3, memVO.getmpwd());
-			pstmt.setString(4, memVO.getmbirthday());
+			pstmt.setDate(4, memVO.getmbirthday());
 			pstmt.setString(5, memVO.getmmail());
 			pstmt.setString(6, memVO.getmaddr());
 			pstmt.setString(7, memVO.getmphone());
@@ -120,7 +120,7 @@ public class MemJNDIDAO implements Mem_interface {
 		
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
+			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, memberId);
 
@@ -172,7 +172,7 @@ public class MemJNDIDAO implements Mem_interface {
 				memVO.setmname(rs.getString("mname"));
 				memVO.setmnickn(rs.getString("mnickn"));
 				memVO.setmpwd(rs.getString("mpwd"));
-				memVO.setmbirthday(rs.getString("mbirthday"));
+				memVO.setmbirthday(rs.getDate("mbirthday"));
 				memVO.setmmail(rs.getString("mmail"));
 				memVO.setmaddr(rs.getString("maddr"));
 				memVO.setmphone(rs.getString("mphone"));
@@ -224,7 +224,7 @@ public class MemJNDIDAO implements Mem_interface {
 				memVO.setmname(rs.getString("mname"));
 				memVO.setmnickn(rs.getString("mnickn"));
 				memVO.setmpwd(rs.getString("mpwd"));
-				memVO.setmbirthday(rs.getString("mbirthday"));
+				memVO.setmbirthday(rs.getDate("mbirthday"));
 				memVO.setmmail(rs.getString("mmail"));
 				memVO.setmaddr(rs.getString("maddr"));
 				memVO.setmphone(rs.getString("mphone"));
@@ -263,3 +263,4 @@ public class MemJNDIDAO implements Mem_interface {
 	}
 
 }
+

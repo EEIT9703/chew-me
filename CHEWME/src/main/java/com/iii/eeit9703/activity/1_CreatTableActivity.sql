@@ -1,4 +1,22 @@
+<<<<<<< HEAD
 --刪除行程表格
+=======
+--創建資料庫
+create database CMDB
+
+--使用CMDB資料庫
+use CMDB;
+go
+
+--判斷刪除重複表格
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'activityt')      
+BEGIN
+DROP TABLE activityt;
+
+END                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+go
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme.git
 
 --建立編輯行程表格
 
@@ -27,3 +45,7 @@ constraint Achedule_primary_key primary key (actID));
 INSERT INTO activity VALUES ('九份一日遊','15','5','09:00:00','10:00:00',default);
 INSERT INTO activity VALUES ('金山一日遊','10','7','10:00:00','11:00:00',default);
 INSERT INTO activity VALUES ('陽明山一日遊','12','6','13:00:00','15:00:00',default);
+
+
+--查詢表格
+SELECT * from activity
