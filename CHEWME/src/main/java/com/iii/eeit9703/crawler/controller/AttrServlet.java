@@ -1,4 +1,4 @@
-package com.iii.eeit9703.crawler;
+package com.iii.eeit9703.crawler.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.attr.model.AttrService;
-import com.attr.model.AttrVO;
+import com.iii.eeit9703.crawler.model.AttrService;
+
+import com.iii.eeit9703.crawler.model.AttrVO;
 @WebServlet("/Attraction.do")
 public class AttrServlet extends HttpServlet {
-
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
