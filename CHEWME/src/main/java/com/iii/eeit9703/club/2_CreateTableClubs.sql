@@ -13,7 +13,7 @@ CREATE TABLE clubs
 (clubID int  PRIMARY KEY  IDENTITY(1,1) NOT NULL, 
 clubName varchar(50) NOT NULL,
 managerId int ,
-location  int NOT NULL,
+locationId  int NOT NULL,
 brief varchar(50),
 refURL varchar(50),
 vistors int,
@@ -26,7 +26,7 @@ go
 Alter TABLE club_member_list ADD CONSTRAINT FK_clubID FOREIGN KEY(clubID) REFERENCES clubs(clubID)
 go
 
-insert into clubs values('chewme®È¦æªÀ',1,1,'§Ú­Ì¬Ochewme®È¦æªÀ,§Æ±æ¤j®a¯à°÷¨Ó³oµ²¥æ¨ì¦n¤Í','http://www.chewme.com',6,2,'¥x¥_¥«¤j¦w°Ï¤j¦w±¶¹B¯¸');
-insert into clubs values('«Ø·~®È¦æªÀ',1,1,'«Ø·~®È¦æªÀ,´£¨Ñ­«¾÷¦æµ{','http://www.chianya.com',2,1,'·s¥_¥«·s©±°Ï¥ÁÅv¸ô');
+insert into clubs values('chewmeï¿½È¦ï¿½ï¿½',1,1,'ï¿½Ú­Ì¬Ochewmeï¿½È¦ï¿½ï¿½,ï¿½Æ±ï¿½jï¿½aï¿½ï¿½ï¿½ï¿½Ó³oï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½','http://www.chewme.com',6,2,'ï¿½xï¿½_ï¿½ï¿½ï¿½jï¿½wï¿½Ï¤jï¿½wï¿½ï¿½ï¿½Bï¿½ï¿½');
+insert into clubs values('ï¿½Ø·~ï¿½È¦ï¿½ï¿½',1,1,'ï¿½Ø·~ï¿½È¦ï¿½ï¿½,ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½{','http://www.chianya.com',2,1,'ï¿½sï¿½_ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ï¥ï¿½ï¿½vï¿½ï¿½');
 
 select * from clubs
