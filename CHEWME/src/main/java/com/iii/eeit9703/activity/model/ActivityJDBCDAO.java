@@ -332,8 +332,8 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		actVO1.setAct_name("九份一日遊");
 		actVO1.setAct_groups(15);
 		actVO1.setAct_current(5);
-		actVO1.setBDate(java.sql.Date.valueOf("2017-10-10"));
-		actVO1.setEDate(java.sql.Date.valueOf("2017-10-10"));
+		actVO1.setBDate(java.sql.Date.valueOf("09:00"));
+		actVO1.setEDate(java.sql.Date.valueOf("10:00"));
 		actVO1.setActivity_state(0);
 		dao.insert(actVO1);
 		

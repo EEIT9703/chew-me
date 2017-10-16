@@ -17,6 +17,7 @@ public class ActivityVO implements java.io.Serializable {
 	private Integer ReportID;    //檢舉
 	private Integer collectID;  //收藏表
 	private String uniqueld; //活動參與者名單
+	
 	public Integer getActID() {
 		return actID;
 	}
