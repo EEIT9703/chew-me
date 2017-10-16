@@ -19,45 +19,45 @@ public class ActivityDAO implements ActivityDAO_interface {
 	static{
 		try {
 			Context ctx = new InitialContext(); //初始化
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/TestDB"); //連結資料庫
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/DB01"); //連結資料庫
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
-	//新增行程
-	private static final String INSERT_Ach =
-			"INSERT INTO achedule (scheduleID,Day,Desc) VALUES (?,?,?) ";
-	//修改
-	private static final String UPDATE_STMT =
-			"UPDATE activity set attractionID=?, name=?, county=? ,Day=?, period=?, Desc=? where actID = ? ";
-	//刪除
-	private static final String DELETE_STMT =
-			"DELETE FROM activity actID = ?";
-	//查詢
-	private static final String GET_ALL_STMT =
-		      "SELECT actID,attractionID,name,county,Day,period,Desc FROM acvitity order by actID";
-	private static final String GET_ONE_STMT =
-		      "SELECT actID,attractionID,name,county,Day,period,Desc FROM acvitity where actID = ?";
-
 	
-	//新增行程
+	//新增活動
+		private static final String INSERT_STMT =
+				"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?) ";
+		//修改活動
+		private static final String UPDATE_STMT =
+				"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?  where actID = ? ";
+		//刪除活動
+		private static final String DELETE_STMT =
+				"DELETE FROM activity actID = ?";
+		//查詢活動
+		private static final String GET_ALL_STMT =
+			      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity order by actID";
+		private static final String GET_ONE_STMT =
+			      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
+	
+	//新增活動
 	@Override
-	public void insertAch(AcheduleVO acheduleVO) {
+	public void insert(ActivityVO activityVO) {
         
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_Ach);
+			pstmt = con.prepareStatement(INSERT_STMT);
 			
-			pstmt.setInt(1, activityVO.getAttactionID());
-			pstmt.setString(2, activityVO.getName());
-			pstmt.setString(3, activityVO.getCounty());
-			pstmt.setInt(4, activityVO.getDay());
-			pstmt.setDate(5, activityVO.getPeriod());
-			pstmt.setString(6, activityVO.getDesc());
-			
+			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
+			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
+			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
+			pstmt.setTime(4, activityVO.getBDate());      //開始日期
+			pstmt.setTime(5, activityVO.getEDate());     //結束日期
+			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
+		
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -95,12 +95,12 @@ public class ActivityDAO implements ActivityDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
-			pstmt.setInt(1, activityVO.getAttactionID());
-			pstmt.setString(2, activityVO.getName());
-			pstmt.setString(3, activityVO.getCounty());
-			pstmt.setInt(4, activityVO.getDay());
-			pstmt.setDate(5, activityVO.getPeriod());
-			pstmt.setString(6, activityVO.getDesc());
+			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
+			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
+			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
+			pstmt.setTime(4, activityVO.getBDate());      //開始日期
+			pstmt.setTime(5, activityVO.getEDate());     //結束日期
+			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
 			
 			pstmt.executeUpdate();
 			
@@ -188,12 +188,12 @@ public class ActivityDAO implements ActivityDAO_interface {
 				
 				activityVO = new ActivityVO();
 				
-				activityVO.setActID(rs.getInt("actID"));
-				activityVO.setName(rs.getNString("Name"));
-				activityVO.setCounty(rs.getString("County"));
-				activityVO.setDay(rs.getInt("Day"));
-				activityVO.setPeriod(rs.getDate("period"));
-				activityVO.setDesc(rs.getString("Desc"));
+				activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
+				activityVO.setAct_groups(rs.getInt("act_groups"));              //成團人數
+				activityVO.setAct_current(rs.getInt("act_current"));           //當前人數
+				activityVO.setBDate(rs.getTime("BDate"));                     //開始日期
+				activityVO.setEDate(rs.getTime("EDate"));                    //結束日期
+				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
 				
 				
 			}
@@ -249,12 +249,12 @@ public class ActivityDAO implements ActivityDAO_interface {
 				
                 activityVO = new ActivityVO();
 				
-				activityVO.setActID(rs.getInt("actID"));
-				activityVO.setName(rs.getNString("Name"));
-				activityVO.setCounty(rs.getString("County"));
-				activityVO.setDay(rs.getInt("Day"));
-				activityVO.setPeriod(rs.getDate("period"));
-				activityVO.setDesc(rs.getString("Desc"));
+                activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
+				activityVO.setAct_groups(rs.getInt("act_groups"));              //成團人數
+				activityVO.setAct_current(rs.getInt("act_current"));           //當前人數
+				activityVO.setBDate(rs.getTime("BDate"));                     //開始日期
+				activityVO.setEDate(rs.getTime("EDate"));                    //結束日期
+				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
 				
 				list.add(activityVO);
 				
@@ -289,5 +289,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 		}
 		return list;
 	}
+
+
+
 
 }
