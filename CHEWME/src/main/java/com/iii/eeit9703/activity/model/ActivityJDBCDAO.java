@@ -1,4 +1,4 @@
-package com.iii.eeit9703.activity;
+package com.iii.eeit9703.activity.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,26 +20,27 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 
-	//新增
+	//新增活動
 	private static final String INSERT_STMT =
-			"INSERT INTO activity (Day,period,Desc,attractionID,name,county,type) VALUES (?,?,?,?,?,?) ";
-	//修改
+			"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?) ";
+	//修改活動
 	private static final String UPDATE_STMT =
-			"UPDATE activity set Day=?, period=?, Desc=?, attractionID=?, name=?, county=?  where actID = ? ";
-	//刪除
+			"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?  where actID = ? ";
+	//刪除活動
 	private static final String DELETE_STMT =
 			"DELETE FROM activity actID = ?";
-	//查詢
+	//查詢活動
 	private static final String GET_ALL_STMT =
-		      "SELECT actID,attractionID,name,county,Day,period,Desc FROM acvitity order by actID";
+		      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity order by actID";
 	private static final String GET_ONE_STMT =
-		      "SELECT actID,attractionID,name,county,Day,period,Desc FROM acvitity where actID = ?";
+		      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
 
 	
-	//新增
+	//新增行程
 	@Override
 	public void insert(ActivityVO activityVO) {
         
+		
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		
@@ -49,14 +50,13 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
-			pstmt.setInt(1, activityVO.getDay()); //行程天數
-			pstmt.setDate(2, activityVO.getPeriod()); //行程開始時間(HH:MM)
-			pstmt.setString(3, activityVO.getDesc()); //行程備註
-			pstmt.setInt(4, activityVO.getAttactionID()); //景點 住宿 商家ID
-			pstmt.setString(5, activityVO.getName()); //地點名稱
-			pstmt.setString(6, activityVO.getCounty()); //所在區域
-			pstmt.setString(7, activityVO.getType()); //景點 住宿 商家
-			
+			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
+			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
+			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
+			pstmt.setTime(4, activityVO.getBDate());      //開始日期
+			pstmt.setTime(5, activityVO.getEDate());     //結束日期
+			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
+		
 			pstmt.executeUpdate();
 			
 		} catch (ClassNotFoundException e) {
@@ -87,7 +87,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 	}
 
 	
-	//修改
+	//修改活動
 	@Override
 	public void update(ActivityVO activityVO) {
 		
@@ -100,12 +100,12 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
-			pstmt.setInt(1, activityVO.getDay()); //行程天數
-			pstmt.setDate(2, activityVO.getPeriod()); //行程開始時間(HH:MM)
-			pstmt.setString(3, activityVO.getDesc()); //行程備註
-			pstmt.setInt(4, activityVO.getAttactionID()); //景點 住宿 商家
-			pstmt.setString(5, activityVO.getName()); //地點名稱
-			pstmt.setString(6, activityVO.getCounty()); //所在區域
+			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
+			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
+			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
+			pstmt.setTime(4, activityVO.getBDate());      //開始日期
+			pstmt.setTime(5, activityVO.getEDate());     //結束日期
+			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
 			
 			pstmt.executeUpdate();
 			
@@ -137,7 +137,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 	}
 
 	
-	//刪除
+	//刪除活動
 	@Override
 	public void delete(Integer actID) {
 		
@@ -182,7 +182,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 	}
 
 	
-	//
+	//查詢一筆活動
 	@Override
 	public ActivityVO findByPrimaryKey(Integer actID) {
 
@@ -205,12 +205,12 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 				
 				activityVO = new ActivityVO();
 				
-				activityVO.setDay(rs.getInt("Day"));
-				activityVO.setPeriod(rs.getDate("period"));
-				activityVO.setDesc(rs.getString("Desc"));
-				activityVO.setActID(rs.getInt("actID"));
-				activityVO.setName(rs.getNString("Name"));
-				activityVO.setCounty(rs.getString("County"));
+				activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
+				activityVO.setAct_groups(rs.getInt("act_groups"));              //成團人數
+				activityVO.setAct_current(rs.getInt("act_current"));           //當前人數
+				activityVO.setBDate(rs.getTime("BDate"));                     //開始日期
+				activityVO.setEDate(rs.getTime("EDate"));                    //結束日期
+				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
 				
 				
 				
@@ -251,6 +251,8 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		return activityVO;
 	}
 
+	
+	//查詢全部活動
 	@Override
 	public List<ActivityVO> getAll() {
 		
@@ -273,12 +275,12 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 				
                 activityVO = new ActivityVO();
 				
-                activityVO.setDay(rs.getInt("Day"));
-				activityVO.setPeriod(rs.getDate("period"));
-				activityVO.setDesc(rs.getString("Desc"));
-				activityVO.setActID(rs.getInt("actID"));
-				activityVO.setName(rs.getNString("Name"));
-				activityVO.setCounty(rs.getString("County"));
+                activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
+				activityVO.setAct_groups(rs.getInt("act_groups"));              //成團人數
+				activityVO.setAct_current(rs.getInt("act_current"));           //當前人數
+				activityVO.setBDate(rs.getTime("BDate"));                     //開始日期
+				activityVO.setEDate(rs.getTime("EDate"));                    //結束日期
+				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
 				
 				
 				list.add(activityVO);
@@ -324,53 +326,57 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 
 		ActivityJDBCDAO dao = new ActivityJDBCDAO();
 		
-		//新增
+		//新增活動  
 		ActivityVO actVO1 = new ActivityVO();
 		
-		actVO1.setName("九份");
-		actVO1.setCounty("北部");
-		actVO1.setDay(1);
-		actVO1.setPeriod(java.sql.Date.valueOf("2017-10-10"));
-		actVO1.setDesc("無");
+		actVO1.setAct_name("九份一日遊");
+		actVO1.setAct_groups(15);
+		actVO1.setAct_current(5);
+		actVO1.setBDate(java.sql.Time.valueOf("09:00:00"));
+		actVO1.setEDate(java.sql.Time.valueOf("10:00:00"));
+		actVO1.setActivity_state(0);
 		dao.insert(actVO1);
 		
 		//修改
-        ActivityVO actVO2 = new ActivityVO();
-		
-		actVO2.setActID(1);
-		actVO2.setName("八份");
-		actVO2.setCounty("中部");
-		actVO2.setDay(2);
-		actVO2.setPeriod(java.sql.Date.valueOf("2017-10-10"));
-		actVO2.setDesc("無");
-		dao.insert(actVO2);
+//        ActivityVO actVO2 = new ActivityVO();
+//		
+//		actVO2.setActID(1);
+//		actVO2.setName("八份");
+//		actVO2.setCounty("中部");
+//		actVO2.setDay(2);
+//		actVO2.setPeriod(java.sql.Date.valueOf("2017-10-10"));
+//		actVO2.setDesc("無");
+//		dao.insert1(actVO2);
 		
 		//刪除
-		dao.delete(1);
+		//dao.delete(1);
 		
 		// 查詢
 		ActivityVO actVO3 = dao.findByPrimaryKey(1);
-		System.out.print(actVO3.getActID() + ",");
-		System.out.print(actVO3.getName() + ",");
-		System.out.print(actVO3.getCounty() + ",");
-		System.out.print(actVO3.getDay() + ",");
-		System.out.print(actVO3.getPeriod() + ",");
-		System.out.print(actVO3.getDesc() + ",");
+		System.out.print(actVO3.getAct_name() + ",");
+		System.out.print(actVO3.getAct_groups() + ",");
+		System.out.print(actVO3.getAct_current() + ",");
+		System.out.print(actVO3.getBDate() + ",");
+		System.out.print(actVO3.getEDate() + ",");
+		System.out.print(actVO3.getActivity_state() + ",");
 		System.out.println("---------------------");
 		
 		// 查詢
 		List<ActivityVO> list = dao.getAll();
 		for (ActivityVO aAct : list) {
-			System.out.print(aAct.getActID() + ",");
-			System.out.print(aAct.getName() + ",");
-			System.out.print(aAct.getCounty() + ",");
-			System.out.print(aAct.getDay() + ",");
-			System.out.print(aAct.getPeriod() + ",");
-			System.out.print(aAct.getDesc() + ",");
+			System.out.print(aAct.getAct_name() + ",");
+			System.out.print(aAct.getAct_groups() + ",");
+			System.out.print(aAct.getAct_current() + ",");
+			System.out.print(aAct.getEDate() + ",");
+			System.out.print(aAct.getEDate() + ",");
+			System.out.print(aAct.getActivity_state() + ",");
 			System.out.println();
 		}
 		
 
 	}
+
+
+	
 
 }

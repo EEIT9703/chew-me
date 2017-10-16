@@ -1,4 +1,4 @@
-package com.iii.eeit9703.crawler;
+package com.iii.eeit9703.crawler.model;
 
 import java.util.*;
 import java.sql.*;
@@ -25,7 +25,7 @@ public class AttrDAO implements AttrDAO_interface {
 	private static final String UPDATE = "update Attractions set name=?, county=?, type=?, address=?, tel=?, intro=? where attractionID=?";
 	private static final String DELETE = "delete from Attractions where attractionID=?";
 
-	//�s�W
+	//新增
 	@Override
 	public void insert(AttrVO attrVO) {
 		Connection con = null;
@@ -63,7 +63,7 @@ public class AttrDAO implements AttrDAO_interface {
 		}
 	}
 
-	//�ק�
+	//修改
 	@Override
 	public void update(AttrVO attrVO) {
 		Connection con = null;
@@ -102,7 +102,7 @@ public class AttrDAO implements AttrDAO_interface {
 		}
 	}
 
-	//�R��
+	//刪除
 	@Override
 	public void delete(Integer attractionID) {
 		Connection con = null;
@@ -135,7 +135,7 @@ public class AttrDAO implements AttrDAO_interface {
 		}
 	}
 
-	//�d�浧
+	//查單筆
 	@Override
 	public AttrVO findByPK(Integer attractionID) {
 
@@ -172,7 +172,7 @@ public class AttrDAO implements AttrDAO_interface {
 		return attrvo;
 	}
 
-	//�d����
+	//查全部
 	@Override
 	public List<AttrVO> getAll() {
 		List<AttrVO> list = new ArrayList<AttrVO>();

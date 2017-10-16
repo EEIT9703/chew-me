@@ -1,21 +1,20 @@
 --刪除行程表格
 drop table activity
 
---建立行程表格
+--建立編輯行程表格
+
 create table activity(
 
-actID             int    identity (1,1) not null,
-Day               int,
-Period            varchar(max),
-Desc1              varchar(max),
---AttactionID       int,
-name              varchar(max),
-County            varchar(max),
-type              varchar(max),
+actID             int    identity (1,1) not null, --活動編號
+act_name          varchar(50),                     --活動名稱
+act_groups        int,                            --成團人數
+act_current       int,                            --當前人數
+BDate             time,                           --開始日期
+EDate	          time,                           --結束日期
+activity_state    int,                            --活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架
 
-constraint activity_primary_key primary key (actID));
+constraint Achedule_primary_key primary key (actID));
  
 --新增行程
-INSERT INTO activity VALUES ('1','09:00','無','九份老街','新北市','美食');
-INSERT INTO activity VALUES ('2','10:00','無','Hotel','新北市','住宿');
-INSERT INTO activity VALUES ('3','11:00','無','九份芋圓','新北市','餐廳');
+INSERT INTO activity VALUES ('九份一日遊','15','5','09:00:00','10:00:00',default);
+

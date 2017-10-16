@@ -1,4 +1,4 @@
-package com.iii.eeit9703.activity;
+package com.iii.eeit9703.activity.controller;
 
 import java.io.IOException;
 

@@ -20,7 +20,3 @@ go
 
 Alter TABLE comments ADD CONSTRAINT FK_commentIssueID FOREIGN KEY(issueID) REFERENCES issues(issueID)
 go
-
-
-insert into comments values (1,1,'哈哈哈 我是第一個comment',1,getDate());
-insert into comments values (1,1,'哈哈哈 第二個comment',2,getDate());
