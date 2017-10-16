@@ -1,8 +1,28 @@
 USE CMDB;
 GO
 
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'msg_rooms')      
+BEGIN
+	--Alter TABLE ISSUE DROP CONSTRAINT FK_IssueClubID
+	--Alter TABLE Club DROP CONSTRAINT FK_MemID
 DROP TABLE msg_rooms
+END
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'msgs')      
+BEGIN
+	--Alter TABLE ISSUE DROP CONSTRAINT FK_IssueClubID
+	--Alter TABLE Club DROP CONSTRAINT FK_MemID
+
 DROP TABLE msgs
+END
+go
+
+
+
+
 
 CREATE TABLE msg_rooms(
 msgroomId    int not null,

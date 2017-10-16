@@ -3,7 +3,16 @@
 use CMDB;
 go
 
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'countys')      
+BEGIN
 drop table countys;
+
+END                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+go
+
+
+
 
 create table countys (
  countyID         int not null,

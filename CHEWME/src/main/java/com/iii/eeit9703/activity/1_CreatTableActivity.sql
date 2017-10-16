@@ -16,6 +16,15 @@ go
 
 --建立編輯行程表格
 
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'activity')      
+BEGIN
+drop table activity;
+
+END                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+go
+
+
 create table activity(
 
 actID             int    identity (1,1) not null, --活動編號
