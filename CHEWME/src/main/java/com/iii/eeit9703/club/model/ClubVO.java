@@ -1,4 +1,4 @@
-package com.iii.eeit9703.club;
+package com.iii.eeit9703.club.model;
 
 public class ClubVO {
 	private Integer clubId;

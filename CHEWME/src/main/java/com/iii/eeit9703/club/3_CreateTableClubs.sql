@@ -26,7 +26,7 @@ go
 Alter TABLE club_member_list ADD CONSTRAINT FK_clubID FOREIGN KEY(clubID) REFERENCES clubs(clubID)
 go
 
-insert into clubs values('chewme�Ȧ��',1,1,'�ڭ̬Ochewme�Ȧ��,�Ʊ�j�a����ӳo�����n��','http://www.chewme.com',6,2,'�x�_���j�w�Ϥj�w���B��');
-insert into clubs values('�ط~�Ȧ��',1,1,'�ط~�Ȧ��,���ѭ�����{','http://www.chianya.com',2,1,'�s�_���s���ϥ��v��');
+insert into clubs values('chewme旅行社',1,1,'我們是chewme旅行社,希望大家能夠來這結交到好友','http://www.chewme.com',6,2,'台北市大安區大安捷運站');
+insert into clubs values('建業旅行社',1,1,'建業旅行社,提供重機行程','http://www.chianya.com',2,1,'新北市新店區民權路');
 
 select * from clubs
