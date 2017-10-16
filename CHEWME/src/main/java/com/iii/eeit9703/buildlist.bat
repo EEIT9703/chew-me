@@ -1,20 +1,20 @@
-ï»¿cd C:\_EEITProject\repository\chewme\CHEWME\src\main\java\com\iii\eeit9703
+cd C:\_EEITProject\repository\chewme\CHEWME\src\main\java\com\iii\eeit9703
 
 
-::  createå„å¤§é …çš„ä¸»è¡¨,ä¾›ä¹‹å¾Œå­è¡¨çš„é€£æ¥
+::  create¦U¤j¶µªº¥Dªí,¨Ñ¤§«á¤lªíªº³s±µ
 sqlcmd -E -i   club\1_CreateTableClubs.sql
 sqlcmd -E -i   member\1_CreateTableMembers.sql
-sqlcmd -E -i   activity\1_CreatTableActivity.sql
-sqlcmd -E -i   crawler\1_CreatTableAttractions.sql
-sqlcmd -E -i   crawler\2_CreatTableArticleShare.sql
+sqlcmd -E -i   activity\1_CreateTableActivity.sql
+sqlcmd -E -i   crawler\1_CreateTableAttractions.sql
+sqlcmd -E -i   crawler\2_CreateTableArticleShare.sql
 
-::  create memberçš„å­è¡¨
+::  create memberªº¤lªí
 sqlcmd -E -i   member\2_CreateTableMFriendsLists.sql
-sqlcmd -E -i   member\3_CreateTableMsgRooms&Msgs.sql
+sqlcmd -E -i   member\3_CreateTableMsgRooms_Msgs.sql
 sqlcmd -E -i   member\4_CreateTableMCalendar.sql
 
 
-:: create clubçš„å­è¡¨
+:: create clubªº¤lªí
 sqlcmd -E -i   club\2_CreateTableClubActivityList.sql
 sqlcmd -E -i   club\3_CreateTableClubMemberList.sql
 sqlcmd -E -i   club\4_CreateTableIssues.sql
@@ -22,10 +22,10 @@ sqlcmd -E -i   club\5_CreateTableComments.sql
 sqlcmd -E -i   club\6_CreateTableQuestion.sql
 sqlcmd -E -i   club\7_CreateTableReplys.sql
 
-:: create1è¡Œç¨‹ç·¨è¼¯å™¨æ‰€æœƒç”¨åˆ°çš„åœ°é»ä»£ç¢¼
+:: create1¦æµ{½s¿è¾¹©Ò·|¥Î¨ìªº¦aÂI¥N½X
 sqlcmd -E -i   actEditor\1_CreateTableCountrys.sql
 
-:: createå¾Œå°æ‰€æœƒç”¨åˆ°çš„è¡¨æ ¼
+:: create«á¥x©Ò·|¥Î¨ìªºªí®æ
 sqlcmd -E -i   backstage\Collection.sql
 sqlcmd -E -i   backstage\Report.sql
 
