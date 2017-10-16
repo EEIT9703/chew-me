@@ -1,7 +1,14 @@
 USE CMDB;
 GO
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'members')      
+BEGIN
+	--Alter TABLE ISSUE DROP CONSTRAINT FK_IssueClubID
+	--Alter TABLE Club DROP CONSTRAINT FK_MemID
+drop table members
+END
+go
 
-DROP TABLE members;
 
 CREATE TABLE members(
 memberId    varchar(30),

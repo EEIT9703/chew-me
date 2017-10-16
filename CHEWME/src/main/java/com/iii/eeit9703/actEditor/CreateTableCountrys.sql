@@ -2,8 +2,14 @@
 
 use CMDB;
 go
-
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'countrys')      
+BEGIN
 drop table countrys;
+
+END                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+go
+
 
 create table countrys (
  queue			int,

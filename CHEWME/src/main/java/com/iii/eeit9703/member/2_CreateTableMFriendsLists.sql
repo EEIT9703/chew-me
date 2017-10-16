@@ -1,7 +1,16 @@
 USE CMDB;
 GO
 
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'm_friends_lists')      
+BEGIN
+	--Alter TABLE ISSUE DROP CONSTRAINT FK_IssueClubID
+	--Alter TABLE Club DROP CONSTRAINT FK_MemID
 DROP TABLE m_friends_lists;
+END
+go
+
+
 
 CREATE TABLE m_friends_lists(
 memberId    varchar(30),
