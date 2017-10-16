@@ -42,7 +42,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 	
 	//新增行程
 	@Override
-	public void insertAch(AcheduleVO acheduleVO) {
+	public void insertAch(ActivityVO acheduleVO) {
         
 		Connection con = null;
 		PreparedStatement pstmt =null;

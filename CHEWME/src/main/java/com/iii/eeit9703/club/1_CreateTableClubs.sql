@@ -9,7 +9,7 @@ END
 go
 
 IF EXISTS (SELECT name FROM sysobjects
-            WHERE type='u' AND name = 'clubs')      
+            WHERE type='u' AND name = 'club_member_list')      
 BEGIN
 Alter TABLE club_member_list DROP CONSTRAINT FK_clubID
 
