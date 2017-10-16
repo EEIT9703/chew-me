@@ -1,4 +1,4 @@
-package com.iii.eeit9703.crawler;
+package com.iii.eeit9703.crawler.model;
 
 import java.sql.Blob;
 
