@@ -1,4 +1,4 @@
-package com.iii.eeit9703.member;
+package com.iii.eeit9703.member.model;
 
 import java.sql.*;
 import java.util.*;

@@ -1,10 +1,13 @@
-package com.iii.eeit9703.member;
+package com.iii.eeit9703.member.controller;
 
 import java.io.*;
 import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import com.iii.eeit9703.member.model.MemDAO;
+import com.iii.eeit9703.member.model.MemVO;
 
 public class RegisterServlet {
 
