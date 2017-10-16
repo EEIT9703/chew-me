@@ -1,4 +1,4 @@
-package com.iii.eeit9703.activity;
+package com.iii.eeit9703.activity.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

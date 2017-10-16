@@ -5,18 +5,18 @@ IF EXISTS (SELECT name FROM sysobjects
 BEGIN
 	--Alter TABLE ISSUE DROP CONSTRAINT FK_IssueClubID
 	--Alter TABLE Club DROP CONSTRAINT FK_MemID
-	DROP Table comments;
+	DROP Table comment;
 END
 go
 
-CREATE TABLE comments
+CREATE TABLE comment
 (commentID int PRIMARY KEY IDENTITY(1,1) NOT NULL,
 issueID int NOT NULL,
 content varchar,
-commenterId int,
-commentDate Date)
+commenter int,
+cdate Date)
 
 go
 
-Alter TABLE comments ADD CONSTRAINT FK_commentIssueID FOREIGN KEY(issueID) REFERENCES issues(issueID)
+Alter TABLE comment ADD CONSTRAINT FK_commentIssueID FOREIGN KEY(issueID) REFERENCES issues(issueID)
 go

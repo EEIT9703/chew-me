@@ -1,4 +1,4 @@
-package com.iii.eeit9703.activity;
+package com.iii.eeit9703.activity.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -326,7 +326,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 
 		ActivityJDBCDAO dao = new ActivityJDBCDAO();
 		
-		//新增活動
+		//新增活動  
 		ActivityVO actVO1 = new ActivityVO();
 		
 		actVO1.setAct_name("九份一日遊");
