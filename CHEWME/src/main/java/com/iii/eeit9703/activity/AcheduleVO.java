@@ -6,21 +6,21 @@ public class AcheduleVO implements java.io.Serializable {
 
 	//編輯行程
 	
-	private Integer schedule;  //行程編號
-	private String Day;       //行程天數(天)
-	private Date period;     //行程時段(HH:MM)
-	private String Desc;    //備註說明
+	private Integer scheduleID;  //行程編號
+	private String Day;         //行程天數(天)
+	private Date period;       //行程時段(HH:MM)
+	private String Desc;      //備註說明
 	
 	//商家 景點 餐廳
 	
 	private Integer attractionID; //景點ID
 
 	public Integer getSchedule() {
-		return schedule;
+		return scheduleID;
 	}
 
 	public void setSchedule(Integer schedule) {
-		this.schedule = schedule;
+		this.scheduleID = schedule;
 	}
 
 	public String getDay() {

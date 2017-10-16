@@ -4,9 +4,9 @@ import java.util.*;
 
 public interface ActivityDAO_interface {
 	
-	//新增
+	//新增活動
 	public void insert (ActivityVO activityVO);
-    //修改
+    //修改活動
 	public void update (ActivityVO activityVO);
 	//刪除
 	public void delete (Integer actID);
@@ -14,5 +14,12 @@ public interface ActivityDAO_interface {
 	public ActivityVO findByPrimaryKey(Integer actID);
 	//查詢
 	public List<ActivityVO>getAll();
+	
+	//新增行程(編輯)
+	//public void insertAch (AcheduleVO acheduleVO);
+	
+	//修改行程(編輯)
+	//public void updateAch (AcheduleVO acheduleVO);
+	
 	
 }

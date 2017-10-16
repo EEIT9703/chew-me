@@ -24,9 +24,9 @@ public class ActivityDAO implements ActivityDAO_interface {
 			e.printStackTrace();
 		}
 	}
-	//新增
-	private static final String INSERT_STMT =
-			"INSERT INTO activity (attractionID,name,county,Day,period,Desc) VALUES (?,?,?,?,?,?) ";
+	//新增行程
+	private static final String INSERT_Ach =
+			"INSERT INTO achedule (scheduleID,Day,Desc) VALUES (?,?,?) ";
 	//修改
 	private static final String UPDATE_STMT =
 			"UPDATE activity set attractionID=?, name=?, county=? ,Day=?, period=?, Desc=? where actID = ? ";
@@ -40,16 +40,16 @@ public class ActivityDAO implements ActivityDAO_interface {
 		      "SELECT actID,attractionID,name,county,Day,period,Desc FROM acvitity where actID = ?";
 
 	
-	//新增
+	//新增行程
 	@Override
-	public void insert(ActivityVO activityVO) {
+	public void insertAch(AcheduleVO acheduleVO) {
         
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
+			pstmt = con.prepareStatement(INSERT_Ach);
 			
 			pstmt.setInt(1, activityVO.getAttactionID());
 			pstmt.setString(2, activityVO.getName());
