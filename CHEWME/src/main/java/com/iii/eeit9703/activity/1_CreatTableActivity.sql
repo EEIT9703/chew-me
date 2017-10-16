@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+--刪除行程表格
+=======
 --創建資料庫
 create database CMDB
 
@@ -13,6 +16,7 @@ DROP TABLE activityt;
 
 END                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 go
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme.git
 
 --建立編輯行程表格
 
