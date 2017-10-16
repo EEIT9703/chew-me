@@ -1,21 +1,21 @@
 use CMDB;
 go
 IF EXISTS (SELECT name FROM sysobjects
-            WHERE type='u' AND name = 'club_member_list')      
+            WHERE type='u' AND name = 'club_activity_list')      
 BEGIN
-DROP TABLE club_member_list;
+DROP TABLE club_activity_list;
 
 END                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 go
 
-CREATE TABLE club_member_list
+CREATE TABLE club_activity_list
 (
-memID int NOT NULL,
-clubID int NOT NULL
+actId int NOT NULL,
+clubId int NOT NULL
 CONSTRAINT [PK_ClassHistory] PRIMARY KEY CLUSTERED 
 (
-[memID],
-[clubID]
+[actId],
+[clubId]
 ) ON [PRIMARY] 
 )
 go

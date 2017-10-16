@@ -15,7 +15,7 @@ qId int NOT NULL,
 content varchar(300),
 replyerId int,
 replyDate Date,
-read boolean)
+read bit)
 
 go
 

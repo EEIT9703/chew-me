@@ -15,7 +15,7 @@ clubId int NOT NULL,
 qTitle varchar(50),
 qcontent varchar(300),
 askerId int,
-read boolean)
+read bit)
 
 go
 
