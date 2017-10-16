@@ -1,6 +1,7 @@
 package com.iii.eeit9703.activity.model;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class ActivityVO implements java.io.Serializable {
 	
@@ -11,8 +12,8 @@ public class ActivityVO implements java.io.Serializable {
 	private String  act_name;  //活動名稱
 	private Integer act_groups; //成團人數
 	private Integer act_current;//當前人數
-	private Date BDate;        //開始日期
-	private Date EDate;       //結束日期
+	private Time BDate;        //開始日期
+	private Time EDate;       //結束日期
 	private Integer activity_state; //活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架 
 	private Integer ReportID;    //檢舉
 	private Integer collectID;  //收藏表
@@ -48,16 +49,16 @@ public class ActivityVO implements java.io.Serializable {
 	public void setAct_current(Integer act_current) {
 		this.act_current = act_current;
 	}
-	public Date getBDate() {
+	public Time getBDate() {
 		return BDate;
 	}
-	public void setBDate(Date bDate) {
+	public void setBDate(Time bDate) {
 		BDate = bDate;
 	}
-	public Date getEDate() {
+	public Time getEDate() {
 		return EDate;
 	}
-	public void setEDate(Date eDate) {
+	public void setEDate(Time eDate) {
 		EDate = eDate;
 	}
 	public Integer getActivity_state() {

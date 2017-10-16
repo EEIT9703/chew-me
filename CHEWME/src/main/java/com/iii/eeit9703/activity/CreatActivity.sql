@@ -16,5 +16,5 @@ activity_state    int,                            --活動型態  0 = 建構中,
 constraint Achedule_primary_key primary key (actID));
  
 --新增行程
-INSERT INTO activity VALUES ('九份一日遊','15','5','09:00','10:00',default);
+INSERT INTO activity VALUES ('九份一日遊','15','5','09:00:00','10:00:00',default);
 
