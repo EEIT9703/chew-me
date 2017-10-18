@@ -1,7 +1,4 @@
-﻿
-
-
-::  create各大項的主表,供之後子表的連接
+﻿::  create各大項的主表,供之後子表的連接
 sqlcmd -E -i   club\1_CreateTableClubs.sql
 sqlcmd -E -i   member\1_CreateTableMembers.sql
 sqlcmd -E -i   activity\1_CreateTableActivity.sql
@@ -24,6 +21,7 @@ sqlcmd -E -i   club\7_CreateTableReplys.sql
 
 :: create1行程編輯器所會用到的地點代碼
 sqlcmd -E -i   actEditor\1_CreateTableCountrys.sql
+sqlcmd -E -i   actEditor\2_CreateTableCountys.sql
 
 :: create後台所會用到的表格
 sqlcmd -E -i   backstage\Collection.sql

@@ -21,3 +21,6 @@ CONSTRAINT [PK_report] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] 
 )
 go
+
+select * from report;
+go
