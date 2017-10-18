@@ -11,11 +11,11 @@ public class MemJDBCDAO {
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 
-	private static final String INSERT_STMT = "INSERT INTO members (memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
-	private static final String GET_ALL_STMT = "SELECT  memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM members order by memberId";
-	private static final String GET_ONE_STMT = "SELECT  memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM members WHERE memberId=?";
+	private static final String INSERT_STMT = "INSERT INTO members (memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
+	private static final String GET_ALL_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole FROM members order by memberId";
+	private static final String GET_ONE_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole FROM members WHERE memberId=?";
 	private static final String DELETE = "DELETE FROM members WHERE memberId=?";
-	private static final String UPDATE = "UPDATE members set mname=?,mnickn=?, mpwd=?, mbirthday=?, mmail=?, maddr=?, mphone=?,mintr=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
+	private static final String UPDATE = "UPDATE members set mName=?,mNickN=?, mPwd=?, mBirthday=?, mMail=?, mAddr=?, mPhone=?,mIntr=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
 
 	public void insert(MemVO memVO) {
 
@@ -29,14 +29,14 @@ public class MemJDBCDAO {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, memVO.getmemberId());
-			pstmt.setString(2, memVO.getmname());
-			pstmt.setString(3, memVO.getmnickn());
-			pstmt.setString(4, memVO.getmpwd());
-			pstmt.setDate(5, memVO.getmbirthday());
-			pstmt.setString(6, memVO.getmmail());
-			pstmt.setString(7, memVO.getmaddr());
-			pstmt.setString(8, memVO.getmphone());
-			pstmt.setString(9, memVO.getmintr());
+			pstmt.setString(2, memVO.getmName());
+			pstmt.setString(3, memVO.getmNickN());
+			pstmt.setString(4, memVO.getmPwd());
+			pstmt.setDate(5, memVO.getmBirthday());
+			pstmt.setString(6, memVO.getmMail());
+			pstmt.setString(7, memVO.getmAddr());
+			pstmt.setString(8, memVO.getmPhone());
+			pstmt.setString(9, memVO.getmIntr());
 
 			pstmt.executeUpdate();
 
@@ -77,14 +77,14 @@ public class MemJDBCDAO {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, memVO.getmname());
-			pstmt.setString(2, memVO.getmnickn());
-			pstmt.setString(3, memVO.getmpwd());
-			pstmt.setDate(4, memVO.getmbirthday());
-			pstmt.setString(5, memVO.getmmail());
-			pstmt.setString(6, memVO.getmaddr());
-			pstmt.setString(7, memVO.getmphone());
-			pstmt.setString(8, memVO.getmintr());
+			pstmt.setString(1, memVO.getmName());
+			pstmt.setString(2, memVO.getmNickN());
+			pstmt.setString(3, memVO.getmPwd());
+			pstmt.setDate(4, memVO.getmBirthday());
+			pstmt.setString(5, memVO.getmMail());
+			pstmt.setString(6, memVO.getmAddr());
+			pstmt.setString(7, memVO.getmPhone());
+			pstmt.setString(8, memVO.getmIntr());
 			pstmt.setString(9, memVO.getmemberId());
 
 			pstmt.executeUpdate();
@@ -177,14 +177,14 @@ public class MemJDBCDAO {
 				// empVo 也稱為 Domain objects
 				memVO = new MemVO();
 				memVO.setmemberId(rs.getString("memberId"));
-				memVO.setmname(rs.getString("mname"));
-				memVO.setmnickn(rs.getString("mnickn"));
-				memVO.setmpwd(rs.getString("mpwd"));
-				memVO.setmbirthday(rs.getDate("mbirthday"));
-				memVO.setmmail(rs.getString("mmail"));
-				memVO.setmaddr(rs.getString("maddr"));
-				memVO.setmphone(rs.getString("mphone"));
-				memVO.setmintr(rs.getString("mintr"));
+				memVO.setmName(rs.getString("mName"));
+				memVO.setmNickN(rs.getString("mNickN"));
+				memVO.setmPwd(rs.getString("mPwd"));
+				memVO.setmBirthday(rs.getDate("mBirthday"));
+				memVO.setmMail(rs.getString("mMail"));
+				memVO.setmAddr(rs.getString("mAddr"));
+				memVO.setmPhone(rs.getString("mPhone"));
+				memVO.setmIntr(rs.getString("mIntr"));
 
 			}
 
@@ -234,14 +234,14 @@ public class MemJDBCDAO {
 				// memVO 也稱為 Domain objects
 				memVO = new MemVO();
 				memVO.setmemberId(rs.getString("memberId"));
-				memVO.setmname(rs.getString("mname"));
-				memVO.setmnickn(rs.getString("mnickn"));
-				memVO.setmpwd(rs.getString("mpwd"));
-				memVO.setmbirthday(rs.getDate("mbirthday"));
-				memVO.setmmail(rs.getString("mmail"));
-				memVO.setmaddr(rs.getString("maddr"));
-				memVO.setmphone(rs.getString("mphone"));
-				memVO.setmintr(rs.getString("mintr"));
+				memVO.setmName(rs.getString("mName"));
+				memVO.setmNickN(rs.getString("mNickN"));
+				memVO.setmPwd(rs.getString("mPwd"));
+				memVO.setmBirthday(rs.getDate("mBirthday"));
+				memVO.setmMail(rs.getString("mMail"));
+				memVO.setmAddr(rs.getString("mAddr"));
+				memVO.setmPhone(rs.getString("mPhone"));
+				memVO.setmIntr(rs.getString("mIntr"));
 				list.add(memVO); // Store the row in the list
 			}
 
@@ -284,55 +284,55 @@ public class MemJDBCDAO {
 
 		 MemVO memVO1=new MemVO();
 		 memVO1.setmemberId("eeit970307");
-		 memVO1.setmname("王立藍");
-		 memVO1.setmnickn("職業哈星");
-		 memVO1.setmpwd("eeit97032017");
-		 memVO1.setmbirthday(java.sql.Date.valueOf("1978-05-22"));
-		 memVO1.setmmail("eeit9703@gmail.com");
-		 memVO1.setmaddr("你家");
-		 memVO1.setmphone("0912-345-678");
-		 memVO1.setmintr("我超猛");
+		 memVO1.setmName("王立藍");
+		 memVO1.setmNickN("職業哈星");
+		 memVO1.setmPwd("eeit97032017");
+		 memVO1.setmBirthday(java.sql.Date.valueOf("1978-05-22"));
+		 memVO1.setmMail("eeit9703@gmail.com");
+		 memVO1.setmAddr("你家");
+		 memVO1.setmPhone("0912-345-678");
+		 memVO1.setmIntr("我超猛");
 		 
 		 
 		 dao.insert(memVO1);
 
 //		 MemVO memVO2=new MemVO();
 //		 memVO2.setmemberId("eeit970301");
-//		 memVO2.setmname("王立綠");
-//		 memVO2.setmnickn("業餘哈星");
-//		 memVO2.setmpwd("eeit9703022017");
-//		 memVO2.setmbirthday(java.sql.Date.valueOf("1990-11-22"));
-//		 memVO2.setmmail("eeit970302@gmail.com");
-//		 memVO2.setmaddr("我家");
-//		 memVO2.setmphone("0987-654-321");
-//		 memVO2.setmintr("我超爛");
+//		 memVO2.setmName("王立綠");
+//		 memVO2.setmNickN("業餘哈星");
+//		 memVO2.setmPwd("eeit9703022017");
+//		 memVO2.setmBirthday(java.sql.Date.valueOf("1990-11-22"));
+//		 memVO2.setmMail("eeit970302@gmail.com");
+//		 memVO2.setmAddr("我家");
+//		 memVO2.setmPhone("0987-654-321");
+//		 memVO2.setmIntr("我超爛");
 //		 dao.update(memVO2);
 //
 //		dao.delete("eeit970301");
 //
 //		MemVO memVO3 = dao.findByPrimaryKey("eeit970301");
 //		System.out.print(memVO3.getmemberId() + ",");
-//		System.out.print(memVO3.getmname() + ",");
-//		System.out.print(memVO3.getmnickn() + ",");
-//		System.out.print(memVO3.getmpwd() + ",");
-//		System.out.print(memVO3.getmbirthday() + ",");
-//		System.out.print(memVO3.getmmail() + ",");
-//		System.out.print(memVO3.getmaddr() + ",");
-//		System.out.print(memVO3.getmphone() + ",");
-//		System.out.print(memVO3.getmintr());
+//		System.out.print(memVO3.getmName() + ",");
+//		System.out.print(memVO3.getmNickN() + ",");
+//		System.out.print(memVO3.getmPwd() + ",");
+//		System.out.print(memVO3.getmBirthday() + ",");
+//		System.out.print(memVO3.getmMail() + ",");
+//		System.out.print(memVO3.getmAddr() + ",");
+//		System.out.print(memVO3.getmPhone() + ",");
+//		System.out.print(memVO3.getmIntr());
 //		System.out.println("---------------------");
 //
 //		List<MemVO> list = dao.getAll();
 //		for (MemVO aMem : list) {
 //			System.out.print(aMem.getmemberId() + ",");
-//			System.out.print(aMem.getmname() + ",");
-//			System.out.print(aMem.getmnickn() + ",");
-//			System.out.print(aMem.getmpwd()+",");
-//			System.out.print(aMem.getmbirthday() + ",");
-//			System.out.print(aMem.getmmail() + ",");
-//			System.out.print(aMem.getmaddr() + ",");
-//			System.out.print(aMem.getmphone() + ",");
-//			System.out.print(aMem.getmintr());
+//			System.out.print(aMem.getmName() + ",");
+//			System.out.print(aMem.getmNickN() + ",");
+//			System.out.print(aMem.getmPwd()+",");
+//			System.out.print(aMem.getmBirthday() + ",");
+//			System.out.print(aMem.getmMail() + ",");
+//			System.out.print(aMem.getmAddr() + ",");
+//			System.out.print(aMem.getmPhone() + ",");
+//			System.out.print(aMem.getmIntr());
 //			System.out.println();
 //
 //		}
