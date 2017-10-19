@@ -22,10 +22,18 @@ public class AttrService {
 		attrVO.setTel(tel);
 		attrVO.setIntro(intro);
 		
+		
 		dao.insert(attrVO);
 		return attrVO;		
+	}
+	public void deleteAttr(Integer attractionID){
+		dao.delete(attractionID);;
+		
 	}
 	public List<AttrVO> getAll(){
 		return dao.getAll();
 	}	
+	public AttrVO getOneAttr(Integer attractionID){
+		return dao.findByPK(attractionID);
+	}
 }

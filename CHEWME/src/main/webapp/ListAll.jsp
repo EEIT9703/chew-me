@@ -13,6 +13,13 @@
 <style>
 #listtable {
 	margin: auto;
+	width: 950px;
+}
+tr{
+text-align: center;
+}
+#th1{
+text-align: center;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,47 +32,62 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>名稱</th>
-					<th>縣市</th>
-					<th>類型</th>
-					<th>地址</th>
-					<th>聯絡電話</th>
-					<th>管理</th>
+					<th id="th1">編號</th>
+					<th id="th1">名稱</th>
+					<th id="th1">縣市</th>
+					<th id="th1">類型</th>
+					<th id="th1">地址</th>
+					<th id="th1">聯絡電話</th>					
+					<th colspan="2" style="text-align: center;">管理</th>					
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="attrVo" items="${list1}">				
-				<tr>
-					<td>${attrVo.name}</td>
-					<td>${attrVo.county}</td>					
-					<td>${attrVo.type}</td>
-					<td>${attrVo.address}</td>
-					<td>${attrVo.tel}</td>
-					<td>
-						<button class="btn btn-danger">
-							<span class="glyphicon glyphicon-remove"></span>
-						</button>
-						<button class="btn btn-info">
-							<span class="glyphicon glyphicon-pencil"></span>
-						</button>
-					</td>
-				</tr>				
+				<c:forEach var="attrVo" items="${list1}">
+					<tr>
+						<td>${attrVo.attractionID}</td>
+						<td>${attrVo.name}</td>
+						<td>${attrVo.county}</td>
+						<td>${attrVo.type}</td>
+						<td>${attrVo.address}</td>
+						<td>${attrVo.tel}</td>
+						
+
+						<td>
+							<form method="post" action="Attraction.do">
+								<button type="submit" class="btn btn-danger">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button>								
+								<input type="hidden" name="attractionID"
+									value="${attrVo.attractionID}"> <input type="hidden"
+									name="action" value="delete">
+							</form>
+						</td>
+						<td>	
+							<form method="post" action="Attraction.do">
+								<button class="btn btn-success">
+									<span class="glyphicon glyphicon-info-sign"></span>
+								</button>
+								<input type="hidden" name="attractionID" value="${attrVo.attractionID}"> 
+								<input type="hidden" name="action" value="one_info">
+							</form>
+						</td>											
+					</tr>					
 				</c:forEach>
 			</tbody>
-
 		</table>
-	
-
+		<a href="InsertAttr.jsp" class="btn btn-primary">返回</a>
 	</div>
-	<div>
-	<a href="InsertAttr.jsp" class="btn btn-default">返回</a>
-	</div>
-
-
-
-
 	<script src="js/jquery-1.12.3.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	
+	<script>
+		$(function() {
+			$(".btn.btn-danger").click(function(){
+				alert("是否刪除?");
+			});
+		
+		})
+	</script>
 </body>
 </html>
