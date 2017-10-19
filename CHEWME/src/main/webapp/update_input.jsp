@@ -8,15 +8,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>新增商家/景點/住宿</title>
+<title>資料修改</title>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 	<div style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding: 5px;">
-		<h2 style="text-align: center;">新增商家/景點/住宿</h2>
-		<form role="form" method="post" name="form1" action="Attraction.do">
+		<h2 style="text-align: center;">資料修改</h2>
+		<form method="post" action="Attraction.do">
 			<div class="form-group">
 				<label for="name" style="margin-left: 10px;">名稱</label> <input
 					type="text" class="form-control" id="name" name="name"
@@ -59,22 +59,16 @@
 					<label for="introduction" style="margin-left: 10px;">簡介</label>
 				</div>
 				<textarea id="introduction" name="intro" cols="40" rows="5"
-					style="resize: none; width: 690px;" value="${attrVO.intro}"></textarea>
+					style="resize: none; width: 690px;">${attrVO.intro}</textarea>
 			</div>
-			<div class="form-group">
-				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label> 
-				<input type="file" id="inputfile" name="photo" value="upload_photo">
-				<p class="help-block"></p>
-			</div>
+			
 			<div>
 				<tr>
 					<td>
 						<div class="checkbox"></div>
-						<button type="submit" class="btn btn-default">送出</button> <input
-						type="hidden" name="action" value="insert">
-					</td>
-					<td>
-					 <a href="ListAll.jsp" class="btn btn-primary">查詢</a>					
+						<button type="submit" class="btn btn-default">送出</button>
+						<input type="hidden" name="attractionID" value="${attrVO.attractionID}"> 
+						<input type="hidden" name="action" value="update">
 					</td>					
 				</tr>
 			</div>

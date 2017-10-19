@@ -12,20 +12,22 @@
 #tabs {
 	margin: auto;
 	width: 700px;
-	height: 800px;
+	height: 700px;
 }
 
 .st1 {
 	list-style-type: none;
-	margin:20px;
+	margin: 20px;
 }
-#tabs-1{
-border:1px solid red;
-height: 550px;
+
+#tabs-1 {
+	border: 1px solid red;
+	height: 450px;
 }
-#tabs-2{
-border:1px solid red;
-height: 550px;
+
+#tabs-2 {
+	border: 1px solid red;
+	height: 550px;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,29 +47,38 @@ height: 550px;
 </script>
 </head>
 <body>
-	<div id="tabs">
-		<div style="margin-left:20px;">
-			<h2>${attrVO.name}</h2>
-		</div>
-		<div class="st1">
-			<li>地址：${attrVO.address}</li>
-			<li>電話：${attrVO.tel}</li>
-		</div>
-		<ul>
-			<li><a href="#tabs-1">介紹</a></li>
-			<li><a href="#tabs-2">分享文</a></li>
+	<form method="post" action="Attraction.do">
+		<div id="tabs">
+			<div style="margin-left: 20px;">
+				<h2>${attrVO.name}</h2>
+			</div>
+			<div class="st1">
+				<li>地址：${attrVO.address}</li>
+				<li>電話：${attrVO.tel}</li>
+				<li>類型：${attrVO.type}</li>
+			</div>
+			<ul>
+				<li><a href="#tabs-1">介紹</a></li>
+				<li><a href="#tabs-2">分享文</a></li>
 
-		</ul>
-		<div id="tabs-1">
-			<p>${attrVO.intro}</p>
+			</ul>
+			<div id="tabs-1">
+				<p>${attrVO.intro}</p>
+			</div>
+			<div id="tabs-2"></div>
+			<div>
+				<tr>
+					<td>
+						<div class="checkbox"></div>
+						<button type="submit" class="btn btn-default">編輯</button>
+						<input type="hidden" name="attractionID" value="${attrVO.attractionID}"> 
+						<input type="hidden" name="action" value="update_one">
+					</td>
+					<td><a href="ListAll.jsp" class="btn btn-primary">返回</a>
+					</td>
+				</tr>
+			</div>
 		</div>
-		<div id="tabs-2">			
-		</div>
-		<div>
-		<a href="InsertAttr.jsp" class="btn btn-default">返回</a>
-		
-		</div>
-
-	</div>
+	</form>
 </body>
 </html>
