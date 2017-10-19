@@ -53,8 +53,8 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
 			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
 			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
-			pstmt.setTime(4, activityVO.getBDate());      //開始日期
-			pstmt.setTime(5, activityVO.getEDate());     //結束日期
+			pstmt.setDate(4, activityVO.getBDate());      //開始日期
+			pstmt.setDate(5, activityVO.getEDate());     //結束日期
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
 		
 			pstmt.executeUpdate();
@@ -103,8 +103,8 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
 			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
 			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
-			pstmt.setTime(4, activityVO.getBDate());      //開始日期
-			pstmt.setTime(5, activityVO.getEDate());     //結束日期
+			pstmt.setDate(4, activityVO.getBDate());      //開始日期
+			pstmt.setDate(5, activityVO.getEDate());     //結束日期
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
 			
 			pstmt.executeUpdate();
@@ -208,8 +208,8 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 				activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
 				activityVO.setAct_groups(rs.getInt("act_groups"));              //成團人數
 				activityVO.setAct_current(rs.getInt("act_current"));           //當前人數
-				activityVO.setBDate(rs.getTime("BDate"));                     //開始日期
-				activityVO.setEDate(rs.getTime("EDate"));                    //結束日期
+				activityVO.setBDate(rs.getDate("BDate"));                     //開始日期
+				activityVO.setEDate(rs.getDate("EDate"));                    //結束日期
 				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
 				
 				
@@ -278,8 +278,8 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
                 activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
 				activityVO.setAct_groups(rs.getInt("act_groups"));              //成團人數
 				activityVO.setAct_current(rs.getInt("act_current"));           //當前人數
-				activityVO.setBDate(rs.getTime("BDate"));                     //開始日期
-				activityVO.setEDate(rs.getTime("EDate"));                    //結束日期
+				activityVO.setBDate(rs.getDate("BDate"));                     //開始日期
+				activityVO.setEDate(rs.getDate("EDate"));                    //結束日期
 				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
 				
 				
@@ -332,8 +332,8 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		actVO1.setAct_name("九份一日遊");
 		actVO1.setAct_groups(15);
 		actVO1.setAct_current(5);
-		actVO1.setBDate(java.sql.Time.valueOf("09:00:00"));
-		actVO1.setEDate(java.sql.Time.valueOf("10:00:00"));
+		actVO1.setBDate(java.sql.Date.valueOf("2017-10-10"));
+		actVO1.setEDate(java.sql.Date.valueOf("2017-10-11"));
 		actVO1.setActivity_state(0);
 		dao.insert(actVO1);
 		
