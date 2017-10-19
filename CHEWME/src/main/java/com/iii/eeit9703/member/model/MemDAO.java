@@ -7,7 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class MemDAO implements Mem_interface {
+public class MemDAO implements MemDAO_interface {
 	private static DataSource ds = null;
 	static {//系統load進來時就做一次,且只做一次,除非系統關閉,否則一直存在
 		try {
@@ -17,11 +17,11 @@ public class MemDAO implements Mem_interface {
 			e.printStackTrace();
 		}
 	}
-	private static final String INSERT_STMT = "INSERT INTO members (memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
-	private static final String GET_ALL_STMT = "SELECT  memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM members order by memberId";
-	private static final String GET_ONE_STMT = "SELECT  memberId,mname,mnickn,mpwd,mbirthday,mmail,maddr,mphone,mintr,mphoto,mstatus,mrole FROM members WHERE memberId=?";
+	private static final String INSERT_STMT = "INSERT INTO members (memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mFileName,mPhoto,mStatus,mRole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
+	private static final String GET_ALL_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mPhoto,mStatus,mRole FROM members order by memberId";
+	private static final String GET_ONE_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mPhoto,mStatus,mRole FROM members WHERE memberId=?";
 	private static final String DELETE = "DELETE FROM members WHERE memberId=?";
-	private static final String UPDATE = "UPDATE members set mname=?,mnickn=?, mpwd=?, mbirthday=?, mmail=?, maddr=?, mphone=?,mintr=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
+	private static final String UPDATE = "UPDATE members set mName=?,mNickN=?, mPwd=?, mBirthday=?, mMail=?, mAddr=?, mPhone=?,mIntr=?,mPhoto=?,mStatus=?,mRole=?  WHERE memberId=?";
 
 	@Override
 	public void insert(MemVO memVO) {
@@ -33,14 +33,14 @@ public class MemDAO implements Mem_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, memVO.getmemberId());
-			pstmt.setString(2, memVO.getmname());
-			pstmt.setString(3, memVO.getmnickn());
-			pstmt.setString(4, memVO.getmpwd());
-			pstmt.setDate(5, memVO.getmbirthday());
-			pstmt.setString(6, memVO.getmmail());
-			pstmt.setString(7, memVO.getmaddr());
-			pstmt.setString(8, memVO.getmphone());
-			pstmt.setString(9, memVO.getmintr());
+			pstmt.setString(2, memVO.getmName());
+			pstmt.setString(3, memVO.getmNickN());
+			pstmt.setString(4, memVO.getmPwd());
+			pstmt.setDate(5, memVO.getmBirthday());
+			pstmt.setString(6, memVO.getmMail());
+			pstmt.setString(7, memVO.getmAddr());
+			pstmt.setString(8, memVO.getmPhone());
+			pstmt.setString(9, memVO.getmIntr());
 
 			pstmt.executeUpdate();
 
@@ -77,14 +77,14 @@ public class MemDAO implements Mem_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, memVO.getmname());
-			pstmt.setString(2, memVO.getmnickn());
-			pstmt.setString(3, memVO.getmpwd());
-			pstmt.setDate(4, memVO.getmbirthday());
-			pstmt.setString(5, memVO.getmmail());
-			pstmt.setString(6, memVO.getmaddr());
-			pstmt.setString(7, memVO.getmphone());
-			pstmt.setString(8, memVO.getmintr());
+			pstmt.setString(1, memVO.getmName());
+			pstmt.setString(2, memVO.getmNickN());
+			pstmt.setString(3, memVO.getmPwd());
+			pstmt.setDate(4, memVO.getmBirthday());
+			pstmt.setString(5, memVO.getmMail());
+			pstmt.setString(6, memVO.getmAddr());
+			pstmt.setString(7, memVO.getmPhone());
+			pstmt.setString(8, memVO.getmIntr());
 			pstmt.setString(9, memVO.getmemberId());
 
 			pstmt.executeUpdate();
@@ -169,14 +169,14 @@ public class MemDAO implements Mem_interface {
 				// empVo 也稱為 Domain objects
 				memVO = new MemVO();
 				memVO.setmemberId(rs.getString("memberId"));
-				memVO.setmname(rs.getString("mname"));
-				memVO.setmnickn(rs.getString("mnickn"));
-				memVO.setmpwd(rs.getString("mpwd"));
-				memVO.setmbirthday(rs.getDate("mbirthday"));
-				memVO.setmmail(rs.getString("mmail"));
-				memVO.setmaddr(rs.getString("maddr"));
-				memVO.setmphone(rs.getString("mphone"));
-				memVO.setmintr(rs.getString("mintr"));
+				memVO.setmName(rs.getString("mName"));
+				memVO.setmNickN(rs.getString("mNickN"));
+				memVO.setmPwd(rs.getString("mPwd"));
+				memVO.setmBirthday(rs.getDate("mBirthday"));
+				memVO.setmMail(rs.getString("mMail"));
+				memVO.setmAddr(rs.getString("mAddr"));
+				memVO.setmPhone(rs.getString("mPhone"));
+				memVO.setmIntr(rs.getString("mIntr"));
 
 			}
 
@@ -221,14 +221,14 @@ public class MemDAO implements Mem_interface {
 				// memVO 也稱為 Domain objects
 				memVO = new MemVO();
 				memVO.setmemberId(rs.getString("memberId"));
-				memVO.setmname(rs.getString("mname"));
-				memVO.setmnickn(rs.getString("mnickn"));
-				memVO.setmpwd(rs.getString("mpwd"));
-				memVO.setmbirthday(rs.getDate("mbirthday"));
-				memVO.setmmail(rs.getString("mmail"));
-				memVO.setmaddr(rs.getString("maddr"));
-				memVO.setmphone(rs.getString("mphone"));
-				memVO.setmintr(rs.getString("mintr"));
+				memVO.setmName(rs.getString("mName"));
+				memVO.setmNickN(rs.getString("mNickN"));
+				memVO.setmPwd(rs.getString("mPwd"));
+				memVO.setmBirthday(rs.getDate("mBirthday"));
+				memVO.setmMail(rs.getString("mMail"));
+				memVO.setmAddr(rs.getString("mAddr"));
+				memVO.setmPhone(rs.getString("mPhone"));
+				memVO.setmIntr(rs.getString("mIntr"));
 				list.add(memVO); // Store the row in the list
 			}
 
