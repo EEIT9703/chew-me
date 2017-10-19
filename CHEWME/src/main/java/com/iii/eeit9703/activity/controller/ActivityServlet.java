@@ -47,11 +47,11 @@ public class ActivityServlet extends HttpServlet {
 				
 				Integer act_current = new Integer(req.getParameter("act_current"));
 				
-				java.sql.Time BDate = null;
-				BDate = java.sql.Time.valueOf(req.getParameter("BDate"));
+				java.sql.Date BDate = null;
+				BDate = java.sql.Date.valueOf(req.getParameter("BDate"));
 				
-				java.sql.Time EDate = null;
-				EDate = java.sql.Time.valueOf(req.getParameter("EDate"));
+				java.sql.Date EDate = null;
+				EDate = java.sql.Date.valueOf(req.getParameter("EDate"));
 				
 				Integer activity_state = new Integer(req.getParameter("activity_state"));
 				
@@ -71,6 +71,15 @@ public class ActivityServlet extends HttpServlet {
 				RequestDispatcher failure = req.getRequestDispatcher("xxx.jsp");
 				e.printStackTrace();
 			}
+		}
+		
+		//活動上架
+		if("update".equals(action)){  //來自update_act_input.jsp 請求
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			Integer actID = new Integer(req.getParameter("actID").trim());
 		}
 		
 	}
