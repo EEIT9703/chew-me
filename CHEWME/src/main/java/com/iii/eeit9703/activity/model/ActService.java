@@ -1,6 +1,7 @@
 package com.iii.eeit9703.activity.model;
 
-import java.sql.Time;
+import java.sql.Date;
+import java.util.List;
 
 public class ActService {
 
@@ -11,7 +12,7 @@ public class ActService {
 	}
 	
 	//新增活動
-	public ActivityVO addAct(String act_name,Integer act_groups,Integer act_current,Time BDate,Time EDate,Integer activity_state){
+	public ActivityVO addAct(String act_name,Integer act_groups,Integer act_current,Date BDate,Date EDate,Integer activity_state){
 		
 		ActivityVO activityVO = new ActivityVO();
 		
@@ -24,6 +25,16 @@ public class ActService {
 		
 		dao.insert(activityVO);
 		return activityVO;
+	}
+	
+	//查詢單一
+	public ActivityVO getOneAct(Integer actID){
+		return dao.findByPrimaryKey(actID);
+	}
+	
+	//查詢全部
+	public List<ActivityVO> getAll(){
+		return dao.getAll();
 	}
 
 }

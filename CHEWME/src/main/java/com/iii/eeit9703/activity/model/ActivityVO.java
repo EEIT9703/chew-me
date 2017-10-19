@@ -19,6 +19,11 @@ public class ActivityVO implements java.io.Serializable {
 	private Integer collectID;  //收藏表
 	private String uniqueld; //活動參與者名單
 	
+	
+	
+	//存與取
+	
+	
 	public Integer getActID() {
 		return actID;
 	}
@@ -87,7 +92,7 @@ public class ActivityVO implements java.io.Serializable {
 	}
 
 
-	//存與取
+
 
 	
 
